@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="24d91a2e-7ec9-4ae2-87ac-95e8c1ab3dd3" name="Default Changelist" comment="" />
+    <list default="true" id="24d91a2e-7ec9-4ae2-87ac-95e8c1ab3dd3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +24,9 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
@@ -33,6 +38,7 @@
     <option name="version" value="1" />
   </component>
   <component name="ProjectId" id="1d8faHa6zLXxDL9eGlvUJJOaW8J" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -128,22 +134,22 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="877" y="352" key="FileChooserDialogImpl/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591862091457" />
-    <state width="2151" height="333" key="GridCell.Tab.0.bottom" timestamp="1591880329212">
+    <state width="2151" height="333" key="GridCell.Tab.0.bottom" timestamp="1591880645296">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880329212" />
-    <state width="2151" height="333" key="GridCell.Tab.0.center" timestamp="1591880329212">
+    <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880645296" />
+    <state width="2151" height="333" key="GridCell.Tab.0.center" timestamp="1591880645296">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880329212" />
-    <state width="2151" height="333" key="GridCell.Tab.0.left" timestamp="1591880329212">
+    <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880645296" />
+    <state width="2151" height="333" key="GridCell.Tab.0.left" timestamp="1591880645295">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880329212" />
-    <state width="2151" height="333" key="GridCell.Tab.0.right" timestamp="1591880329212">
+    <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880645295" />
+    <state width="2151" height="333" key="GridCell.Tab.0.right" timestamp="1591880645296">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880329212" />
+    <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880645296" />
     <state x="606" y="239" key="SettingsEditor" timestamp="1591816508335">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
