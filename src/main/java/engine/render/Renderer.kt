@@ -1,11 +1,12 @@
 package engine.render
 
 import engine.Window
+import engine.model.Camera
 import engine.shader.Shader
 import engine.shader.shaders.ColorBlendShader
 import engine.shader.shaders.TexturedShader
+import engine.shader.types.ModelViewMatrixShader
 import engine.shader.types.ProjectionMatrixShader
-import engine.shader.types.WorldMatrixShader
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.opengl.GL30
 
@@ -22,10 +23,13 @@ class Renderer {
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
     }
 
-    fun render(objects: List<WorldObject3D>, shader: Shader) {
+    fun render(objects: List<WorldObject3D>, shader: Shader, camera: Camera) {
         shader.start()
 
+        val viewMatrix = spaceTransformer3D.getViewMatrix(camera)
+
         var currentlyBoundVAO = -1
+        var currentlyBoundTexture = -1
 
         for (obj in objects) {
             if (currentlyBoundVAO != obj.mesh.vertexArrayObjectID) {
@@ -34,14 +38,19 @@ class Renderer {
                 currentlyBoundVAO = obj.mesh.vertexArrayObjectID
             }
 
-            if (shader is WorldMatrixShader) {
-                val worldMatrix = spaceTransformer3D.getWorldMatrix(
-                        obj.position,
-                        obj.rotation,
-                        obj.scale
+            if (currentlyBoundTexture != obj.mesh.texture) {
+                GL30.glBindTexture(GL30.GL_TEXTURE_2D, 0)
+                GL30.glBindTexture(GL30.GL_TEXTURE_2D, obj.mesh.texture)
+                currentlyBoundTexture = obj.mesh.texture
+            }
+
+            if (shader is ModelViewMatrixShader) {
+                val modelViewMatrix = spaceTransformer3D.getModelViewMatrix(
+                        obj,
+                        viewMatrix
                 )
 
-                shader.loadWorldMatrix(worldMatrix)
+                shader.loadModelViewMatrix(modelViewMatrix)
             }
 
 
@@ -49,7 +58,6 @@ class Renderer {
             GL30.glEnableVertexAttribArray(1)
 
             GL30.glActiveTexture(GL30.GL_TEXTURE0)
-            GL30.glBindTexture(GL30.GL_TEXTURE_2D, obj.mesh.texture)
 
             GL30.glDrawElements(GL30.GL_TRIANGLES, obj.mesh.vertexCount, GL_UNSIGNED_INT, 0)
 
@@ -61,8 +69,8 @@ class Renderer {
         shader.stop()
     }
 
-    fun render(objects: List<WorldObject3D>, shader: String) {
-        render(objects, getShader(shader))
+    fun render(objects: List<WorldObject3D>, shader: String, camera: Camera) {
+        render(objects, getShader(shader), camera)
     }
 
     fun getShader(shader: String) = shaderMap[shader] ?: error("Invalid shader ID")

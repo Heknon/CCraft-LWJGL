@@ -9,6 +9,7 @@ class GameEngine(
     private val gameLoopThread: Thread = Thread(this, "GAME LOOP THREAD | $title")
     private val window: Window = Window(title, size, vSync)
     private val timer: Timer = Timer()
+    private val mouseInput: MouseInput = MouseInput()
 
     fun start() {
         if (System.getProperty("os.name").contains("Mac")) {
@@ -35,11 +36,12 @@ class GameEngine(
     }
 
     fun input() {
-        gameLogic.input(window)
+        mouseInput.input(window)
+        gameLogic.input(window, mouseInput)
     }
 
     fun update(interval: Float) {
-        gameLogic.update(interval)
+        gameLogic.update(interval, mouseInput)
     }
 
     private fun cleanup() {
@@ -50,6 +52,7 @@ class GameEngine(
         window.init()
         timer.init()
         gameLogic.init()
+        mouseInput.init(window)
     }
 
     private fun gameLoop() {

@@ -9,10 +9,11 @@ import java.nio.FloatBuffer
 import java.nio.IntBuffer
 
 object MeshLoader {
-    fun createMesh(positions: FloatArray, uvs: FloatArray, indices: IntArray): Mesh {
+    fun createMesh(positions: FloatArray, uvs: FloatArray, normals: FloatArray, indices: IntArray): Mesh {
         val vao = genVertexArrayObjects()
         storeData(0, 3, positions)
         storeData(1, 2, uvs)
+        storeData(2, 3, normals)
         bindIndices(indices)
         GL30.glBindVertexArray(0)
         return Mesh(vao, indices.size)
