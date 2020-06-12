@@ -1,4 +1,4 @@
-package render.shader
+package engine.shader.shaders
 
 class TexturedShader : MatrixShader("TexturedVS.glsl", "TexturedFS.glsl") {
     override val attributeAmount: Int = 1

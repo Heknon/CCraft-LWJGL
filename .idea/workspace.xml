@@ -2,7 +2,37 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d91a2e-7ec9-4ae2-87ac-95e8c1ab3dd3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/engine/GameEngine.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/engine/GameLogic.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/engine/IGameLogic.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/engine/Timer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/engine/model/Cube.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/engine/render/Renderer.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/engine/render/SpaceTransformer3D.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/engine/render/WorldObject3D.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/CCraft.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/CCraft.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/event/Event.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/event/KeyEvent.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/Mesh.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/Mesh.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/MeshLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/MeshLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/Renderer.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/Rotation.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/Texture.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/Texture.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/entities/Block.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/entities/Entity.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/shader/ColorBlendShader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/shader/shaders/ColorBlendShader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/shader/MatrixShader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/shader/shaders/MatrixShader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/shader/ProjectableShader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/shader/types/ProjectableMatrixShader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/shader/Shader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/shader/Shader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/shader/TexturedShader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/shader/shaders/TexturedShader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/render/shader/TransformableShader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/shader/types/WorldMatrixShader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/Math.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/window/Keyboard.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/window/Window.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/Window.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shaders/ColorBlendVS.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shaders/ColorBlendVS.glsl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shaders/TexturedVS.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shaders/TexturedVS.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,10 +46,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="GLSL Shader" />
-        <option value="Class" />
         <option value="FxmlFile" />
-        <option value="Kotlin File" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin File" />
+        <option value="Class" />
         <option value="Kotlin Class" />
       </list>
     </option>
@@ -58,10 +88,14 @@
       <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\shaders" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
-      <recent name="event" />
+      <recent name="engine.render" />
+      <recent name="engine.shader.shaders" />
+      <recent name="game" />
+      <recent name="engine" />
       <recent name="window" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="render.shader.types" />
       <recent name="render.shader" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
@@ -71,8 +105,8 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration name="CCraft" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="CCraft" />
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="CCraft" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -80,7 +114,7 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.CCraft" />
+        <item itemvalue="Application.Main" />
       </list>
     </recent_temporary>
   </component>
@@ -118,53 +152,69 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="552" y="252" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591862258569" />
-    <state x="889" y="313" key="#com.intellij.ide.util.MemberChooser" timestamp="1591877433705">
+    <state x="889" y="313" key="#com.intellij.ide.util.MemberChooser" timestamp="1591950961502">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="889" y="313" key="#com.intellij.ide.util.MemberChooser/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591877433705" />
+    <state x="889" y="313" key="#com.intellij.ide.util.MemberChooser/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591950961502" />
     <state x="827" y="381" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1591862192562">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="827" y="381" key="#com.intellij.ide.util.TreeClassChooserDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591862192562" />
-    <state x="877" y="249" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1591870018960">
+    <state x="729" y="522" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1591945327117">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="877" y="249" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591870018960" />
+    <state x="729" y="522" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591945327117" />
+    <state x="782" y="198" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog" timestamp="1591950999313">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="782" y="198" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591950999313" />
+    <state x="828" y="344" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1591901673999">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="828" y="344" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591901673999" />
+    <state x="877" y="249" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1591945960672">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="877" y="249" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591945960672" />
     <state x="877" y="352" key="FileChooserDialogImpl" timestamp="1591862091457">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="877" y="352" key="FileChooserDialogImpl/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591862091457" />
-    <state width="2151" height="333" key="GridCell.Tab.0.bottom" timestamp="1591880645296">
+    <state width="2151" height="333" key="GridCell.Tab.0.bottom" timestamp="1591954078020">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880645296" />
-    <state width="2151" height="333" key="GridCell.Tab.0.center" timestamp="1591880645296">
+    <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591954078020" />
+    <state width="2151" height="333" key="GridCell.Tab.0.center" timestamp="1591954078019">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880645296" />
-    <state width="2151" height="333" key="GridCell.Tab.0.left" timestamp="1591880645295">
+    <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591954078019" />
+    <state width="2151" height="333" key="GridCell.Tab.0.left" timestamp="1591954078019">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880645295" />
-    <state width="2151" height="333" key="GridCell.Tab.0.right" timestamp="1591880645296">
+    <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591954078019" />
+    <state width="2151" height="333" key="GridCell.Tab.0.right" timestamp="1591954078020">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591880645296" />
-    <state x="606" y="239" key="SettingsEditor" timestamp="1591816508335">
+    <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591954078020" />
+    <state x="606" y="239" key="SettingsEditor" timestamp="1591947417872">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="606" y="239" key="SettingsEditor/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591816508335" />
+    <state x="606" y="239" key="SettingsEditor/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591947417872" />
+    <state x="93" y="93" width="2008" height="1008" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1591952346213">
+      <screen x="0" y="0" width="2194" height="1194" />
+    </state>
+    <state x="93" y="93" width="2008" height="1008" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591952346213" />
     <state x="524" y="292" key="new project wizard" timestamp="1591814586028">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="524" y="292" key="new project wizard/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591814586028" />
-    <state x="754" y="279" key="run.anything.popup" timestamp="1591861726611">
+    <state x="754" y="279" key="run.anything.popup" timestamp="1591908742221">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="754" y="279" key="run.anything.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591861726611" />
-    <state x="760" y="264" width="672" height="678" key="search.everywhere.popup" timestamp="1591876458476">
+    <state x="754" y="279" key="run.anything.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591908742221" />
+    <state x="760" y="264" width="672" height="678" key="search.everywhere.popup" timestamp="1591951543343">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="760" y="264" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591876458476" />
+    <state x="760" y="264" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591951543343" />
   </component>
 </project>

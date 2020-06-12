@@ -1,8 +1,8 @@
-package render.shader
+package engine.shader.types
 
 import org.joml.Matrix4f
 
-interface ProjectableShader {
+interface ProjectableMatrixShader {
     var projectionMatrixLocation: Int
     fun loadProjectionMatrix(matrix: Matrix4f)
 }

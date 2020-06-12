@@ -1,4 +1,4 @@
-package render
+package engine.render
 
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL30

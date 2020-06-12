@@ -1,16 +1,16 @@
-package render.shader
+package engine.shader
 
 import org.joml.Matrix4f
-import org.joml.Matrix4fc
 import org.joml.Vector3f
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL20
+import org.lwjgl.opengl.GL30
 import java.nio.FloatBuffer
 import kotlin.properties.Delegates
 
 abstract class Shader(private val vertexShader: String, private val fragmentShader: String) {
-    private val matrix: FloatBuffer = BufferUtils.createFloatBuffer(16)
+    private var matrix: FloatBuffer = BufferUtils.createFloatBuffer(16)
     private var programID by Delegates.notNull<Int>()
     private var vertexID by Delegates.notNull<Int>()
     private var fragmentID by Delegates.notNull<Int>()
@@ -39,7 +39,7 @@ abstract class Shader(private val vertexShader: String, private val fragmentShad
         GL20.glUseProgram(0)
     }
 
-    fun cleanUp() {
+    fun cleanup() {
         stop()
         GL20.glDetachShader(programID, vertexID)
         GL20.glDetachShader(programID, fragmentID)
@@ -70,8 +70,7 @@ abstract class Shader(private val vertexShader: String, private val fragmentShad
 
     protected open fun loadMatrix(location: Int, value: Matrix4f) {
         value.get(matrix)
-        matrix.flip()
-        GL20.glUniformMatrix4fv(location, false, matrix)
+        GL30.glUniformMatrix4fv(location, false, matrix)
     }
 
     companion object {
