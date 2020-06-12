@@ -5,6 +5,7 @@ import engine.MouseInput
 import engine.Window
 import engine.model.Camera
 import engine.model.Cube
+import engine.render.MeshLoader
 import engine.render.Renderer
 import engine.render.WorldObject3D
 import org.joml.Vector3f
@@ -74,6 +75,7 @@ class CCraft : IGameLogic {
 
     override fun cleanup() {
         renderer.cleanup()
+        MeshLoader.cleanup()
     }
 
     companion object {

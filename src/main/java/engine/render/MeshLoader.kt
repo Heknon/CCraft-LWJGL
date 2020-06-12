@@ -8,6 +8,7 @@ import org.lwjgl.opengl.GL30
 import java.nio.FloatBuffer
 import java.nio.IntBuffer
 
+
 object MeshLoader {
     fun createMesh(positions: FloatArray, uvs: FloatArray, normals: FloatArray, indices: IntArray): Mesh {
         val vao = genVertexArrayObjects()
@@ -17,6 +18,10 @@ object MeshLoader {
         bindIndices(indices)
         GL30.glBindVertexArray(0)
         return Mesh(vao, indices.size)
+    }
+
+    fun createMesh(file: String): Mesh {
+        return OBJLoader.loadMesh(file)
     }
 
     private fun genVertexArrayObjects(): Int {
@@ -58,7 +63,8 @@ object MeshLoader {
         return buffer
     }
 
-    fun cleanUp() {
+
+    fun cleanup() {
         for (vao in vertexArrayObjects) {
             GL30.glDeleteVertexArrays(vao)
         }

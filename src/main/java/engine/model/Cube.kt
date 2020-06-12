@@ -98,6 +98,6 @@ class Cube(position: Vector3f = Vector3f(0f, 0f, 0f), rotation: Vector3f = Vecto
 
         val normals = floatArrayOf()
 
-        private val mesh: Mesh = MeshLoader.createMesh(positions, uvs, normals, indices).addTexture("cube.png")
+        private val mesh: Mesh = MeshLoader.createMesh("grass.obj").addTexture("cube.png")
     }
 }
