@@ -28,7 +28,7 @@ class CCraft : IGameLogic {
             window.resized = false
         }
 
-        renderer.render(objects, "blend")
+        renderer.render(objects, "textured")
     }
 
     override fun update(interval: Float) {

@@ -5,7 +5,8 @@ import org.lwjgl.opengl.GL20
 import org.lwjgl.opengl.GL30
 
 data class Mesh(val vertexArrayObjectID: Int, val vertexCount: Int) {
-    private var texture: Int = 0
+    var texture: Int = 0
+        private set
 
     fun addTexture(texture: String): Mesh {
         this.texture = Texture.loadTexture(texture)

@@ -4,7 +4,7 @@ import engine.Window
 import engine.shader.Shader
 import engine.shader.shaders.ColorBlendShader
 import engine.shader.shaders.TexturedShader
-import engine.shader.types.ProjectableMatrixShader
+import engine.shader.types.ProjectionMatrixShader
 import engine.shader.types.WorldMatrixShader
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.opengl.GL30
@@ -46,10 +46,15 @@ class Renderer {
 
 
             GL30.glEnableVertexAttribArray(0)
+            GL30.glEnableVertexAttribArray(1)
+
+            GL30.glActiveTexture(GL30.GL_TEXTURE0)
+            GL30.glBindTexture(GL30.GL_TEXTURE_2D, obj.mesh.texture)
 
             GL30.glDrawElements(GL30.GL_TRIANGLES, obj.mesh.vertexCount, GL_UNSIGNED_INT, 0)
 
             GL30.glDisableVertexAttribArray(0)
+            GL30.glDisableVertexAttribArray(1)
         }
 
         GL30.glBindVertexArray(0)
@@ -66,7 +71,7 @@ class Renderer {
         // TODO: Maybe this needs to be loaded every render!
         val projectionMatrix = spaceTransformer3D.getProjectionMatrix(FOV, window.size, Z_NEAR, Z_FAR)
         shaderMap.values.forEach {
-            if (it is ProjectableMatrixShader) {
+            if (it is ProjectionMatrixShader) {
                 it.start()
                 it.loadProjectionMatrix(projectionMatrix)
                 it.stop()

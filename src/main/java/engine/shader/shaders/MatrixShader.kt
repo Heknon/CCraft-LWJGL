@@ -1,11 +1,11 @@
 package engine.shader.shaders
 
 import engine.shader.Shader
-import engine.shader.types.ProjectableMatrixShader
+import engine.shader.types.ProjectionMatrixShader
 import engine.shader.types.WorldMatrixShader
 import org.joml.Matrix4f
 
-abstract class MatrixShader(vertexShader: String, fragmentShader: String) : Shader(vertexShader, fragmentShader), ProjectableMatrixShader, WorldMatrixShader {
+abstract class MatrixShader(vertexShader: String, fragmentShader: String) : Shader(vertexShader, fragmentShader), ProjectionMatrixShader, WorldMatrixShader {
     override var transformationMatrixLocation = 0
     override var projectionMatrixLocation = 0
 
