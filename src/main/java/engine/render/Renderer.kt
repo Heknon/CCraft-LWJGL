@@ -1,35 +1,82 @@
 package engine.render
 
 import engine.Window
-import engine.model.Camera
-import engine.shader.Shader
-import engine.shader.shaders.ColorBlendShader
-import engine.shader.shaders.TexturedShader
-import engine.shader.types.ModelViewMatrixShader
-import engine.shader.types.ProjectionMatrixShader
+import engine.render.lighting.PointLight
+import engine.render.lighting.Sun
+import engine.render.model.Camera
+import engine.render.shader.Shader
+import engine.render.shader.shaders.ColorBlendShader
+import engine.render.shader.shaders.TexturedShader
+import engine.render.shader.types.DirectionalLightShader
+import engine.render.shader.types.ModelViewMatrixShader
+import engine.render.shader.types.PhongShader
+import engine.render.shader.types.ProjectionMatrixShader
+import org.joml.Vector3f
+import org.joml.Vector4f
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.opengl.GL30
+import java.util.*
+
 
 class Renderer {
     private lateinit var shaderMap: Map<String, Shader>
     private lateinit var spaceTransformer3D: SpaceTransformer3D
+    private var specularPower: Float = 10f
 
     fun init() {
         shaderMap = mapOf(Pair("textured", TexturedShader()), Pair("blend", ColorBlendShader()))
         spaceTransformer3D = SpaceTransformer3D()
+        shaderMap.values.forEach {
+            if (it is PhongShader) {
+                it.start()
+                it.loadSpecularPower(specularPower)
+                it.stop()
+            }
+        }
     }
 
     fun clear() {
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
     }
 
-    fun render(objects: List<WorldObject3D>, shader: Shader, camera: Camera) {
+    fun render(
+            objects: List<WorldObject3D>,
+            shader: Shader,
+            camera: Camera,
+            ambientLight: Vector3f,
+            pointLight: PointLight,
+            sun: Sun
+    ) {
         shader.start()
 
         val viewMatrix = spaceTransformer3D.getViewMatrix(camera)
 
+
+        if (shader is PhongShader) {
+            val currPointLight = PointLight(pointLight)
+            val lightPos: Vector3f = currPointLight.position
+            val aux = Vector4f(lightPos, 1f)
+            aux.mul(viewMatrix)
+            lightPos.x = aux.x
+            lightPos.y = aux.y
+            lightPos.z = aux.z
+
+            shader.loadAmbientLight(ambientLight)
+            shader.loadPointLight(currPointLight)
+        }
+
+        if (shader is DirectionalLightShader) {
+            val currDirectionalLight = sun.directionalLightClone
+            val dir = Vector4f(currDirectionalLight.direction, 0f)
+            dir.mul(viewMatrix)
+            currDirectionalLight.direction = Vector3f(dir.x, dir.y, dir.z)
+            shader.loadDirectionLight(currDirectionalLight)
+        }
+
+
         var currentlyBoundVAO = -1
         var currentlyBoundTexture = -1
+        var currentMesh: UUID? = null
 
         for (obj in objects) {
             if (currentlyBoundVAO != obj.mesh.vertexArrayObjectID) {
@@ -53,6 +100,11 @@ class Renderer {
                 shader.loadModelViewMatrix(modelViewMatrix)
             }
 
+            if (currentMesh != obj.mesh.uuid && shader is PhongShader) {
+                shader.loadMaterial(obj.mesh.material)
+                currentMesh = obj.mesh.uuid
+            }
+
 
             GL30.glEnableVertexAttribArray(0)
             GL30.glEnableVertexAttribArray(1)
@@ -71,8 +123,15 @@ class Renderer {
         shader.stop()
     }
 
-    fun render(objects: List<WorldObject3D>, shader: String, camera: Camera) {
-        render(objects, getShader(shader), camera)
+    fun render(
+            objects: List<WorldObject3D>,
+            shader: String,
+            camera: Camera,
+            ambientLight: Vector3f,
+            pointLight: PointLight,
+            sun: Sun
+    ) {
+        render(objects, getShader(shader), camera, ambientLight, pointLight, sun)
     }
 
     fun getShader(shader: String) = shaderMap[shader] ?: error("Invalid shader ID")

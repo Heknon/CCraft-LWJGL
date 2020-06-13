@@ -1,7 +1,8 @@
-package engine.shader
+package engine.render.shader
 
 import org.joml.Matrix4f
 import org.joml.Vector3f
+import org.joml.Vector4f
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL20
@@ -56,19 +57,23 @@ abstract class Shader(private val vertexShader: String, private val fragmentShad
         GL20.glBindAttribLocation(programID, attribute, variableName)
     }
 
-    protected fun loadFloat(location: Int, value: Float) {
+    protected fun load(location: Int, value: Float) {
         GL20.glUniform1f(location, value)
     }
 
-    protected fun loadVector(location: Int, vector: Vector3f) {
+    protected fun load(location: Int, vector: Vector3f) {
         GL20.glUniform3f(location, vector.x, vector.y, vector.z)
     }
 
-    protected fun loadBoolean(location: Int, value: Boolean) {
+    protected fun load(location: Int, vector: Vector4f) {
+        GL20.glUniform4f(location, vector.x, vector.y, vector.z, vector.w)
+    }
+
+    protected fun load(location: Int, value: Boolean) {
         GL20.glUniform1f(location, if (value) 1f else 0f)
     }
 
-    protected open fun loadMatrix(location: Int, value: Matrix4f) {
+    protected open fun load(location: Int, value: Matrix4f) {
         value.get(matrix)
         GL30.glUniformMatrix4fv(location, false, matrix)
     }

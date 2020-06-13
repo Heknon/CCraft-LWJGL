@@ -13,7 +13,7 @@ class Texture {
 
         fun loadTexture(resourcePath: String): Int {
             if (idMap.containsKey(resourcePath)) {
-                return idMap["/$resourcePath"]!!
+                return idMap[resourcePath]!!
             }
 
             val width: Int
@@ -25,7 +25,7 @@ class Texture {
                 val h = stack.mallocInt(1)
                 val channels = stack.mallocInt(1)
 
-                val url = javaClass.getResource("/textures/${resourcePath}")
+                val url = javaClass.getResource("/$resourcePath")
                 buffer = STBImage.stbi_load(url.file.substring(1, url.file.length), w, h, channels, 4)
                 if (buffer == null) {
                     throw RuntimeException("Can't load file $resourcePath ${STBImage.stbi_failure_reason()}")

@@ -1,4 +1,4 @@
-package engine.shader.shaders
+package engine.render.shader.shaders
 
 class TexturedShader : MatrixShader("TexturedVS.glsl", "TexturedFS.glsl") {
     override val attributeAmount: Int = 1
@@ -6,5 +6,6 @@ class TexturedShader : MatrixShader("TexturedVS.glsl", "TexturedFS.glsl") {
     override fun bindAttributes() {
         bindAttribute(0, "position")
         bindAttribute(1, "uvs")
+        bindAttribute(2, "normals")
     }
 }

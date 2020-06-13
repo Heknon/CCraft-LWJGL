@@ -1,7 +1,7 @@
 package engine.render
 
 import engine.Window
-import engine.model.Camera
+import engine.render.model.Camera
 import org.joml.Matrix4f
 import org.joml.Vector3f
 

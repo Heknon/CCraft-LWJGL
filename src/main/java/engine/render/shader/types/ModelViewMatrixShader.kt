@@ -1,4 +1,4 @@
-package engine.shader.types
+package engine.render.shader.types
 
 import org.joml.Matrix4f
 

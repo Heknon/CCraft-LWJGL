@@ -1,4 +1,4 @@
-package engine.model
+package engine.render.model
 
 import engine.render.Mesh
 import engine.render.WorldObject3D

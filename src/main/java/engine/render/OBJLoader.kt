@@ -6,7 +6,7 @@ import java.util.*
 
 object OBJLoader {
     fun loadMesh(fileName: String): Mesh {
-        val lines = this::class.java.getResource("/models/$fileName").readText().split("\n")
+        val lines = this::class.java.getResource("/$fileName").readText().split("\n")
 
         val vertices: MutableList<Vector3f> = ArrayList()
         val textures: MutableList<Vector2f> = ArrayList()
@@ -17,9 +17,9 @@ object OBJLoader {
             val tokens = line.split(Regex("\\s+"))
             when (tokens[0]) {
                 "v" -> vertices.add(Vector3f(
-                        tokens[1].toFloat(),
-                        tokens[2].toFloat(),
-                        tokens[3].toFloat()
+                        tokens[1].toFloat() / 2,
+                        tokens[2].toFloat() / 2,
+                        tokens[3].toFloat() / 2
                 ))
                 "vt" -> textures.add(Vector2f(
                         tokens[1].toFloat(),
@@ -38,7 +38,7 @@ object OBJLoader {
 
             }
         }
-        println(vertices)
+
         return reorderLists(vertices, textures, normals, faces)
     }
 
@@ -71,7 +71,10 @@ object OBJLoader {
             indices[it]
         }
 
-        println(posArr.toList())
+        println("posArr: ${posArr.toList()}\n\n")
+        println("textureCoordinateArr: ${textureCoordinateArr.toList()}\n\n")
+        println("normalArr: ${normalArr.toList()}\n\n")
+        println("indicesArr: ${indicesArr.toList()}\n\n")
         return MeshLoader.createMesh(posArr, textureCoordinateArr, normalArr, indicesArr)
     }
 

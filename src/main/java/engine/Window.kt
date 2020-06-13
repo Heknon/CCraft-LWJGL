@@ -9,7 +9,7 @@ import org.lwjgl.system.MemoryUtil.NULL
 import kotlin.properties.Delegates
 
 
-class Window(private val title: String = "game.CCraft", val size: Size, internal var vSync: Boolean = true) {
+class Window(private val title: String = "CCraft", val size: Size, internal var vSync: Boolean = true) {
 
     var handle by Delegates.notNull<Long>()
         private set
