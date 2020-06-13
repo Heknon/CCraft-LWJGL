@@ -38,7 +38,7 @@ object OBJLoader {
 
             }
         }
-
+        println("FACES: ${faces}")
         return reorderLists(vertices, textures, normals, faces)
     }
 
@@ -112,6 +112,12 @@ object OBJLoader {
         companion object {
             const val NO_VALUE = -1
         }
+
+        override fun toString(): String {
+            return "IndexGroup(indexPos=$indexPos, indexTextureCoordinate=$indexTextureCoordinate, indexVectorNormal=$indexVectorNormal)"
+        }
+
+
     }
 
     class Face(vararg v: String) {
@@ -139,5 +145,11 @@ object OBJLoader {
 
             return indexGroup
         }
+
+        override fun toString(): String {
+            return "Face(vertexIndices=${vertexIndices.contentToString()})"
+        }
+
+
     }
 }
