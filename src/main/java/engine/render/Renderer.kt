@@ -13,6 +13,7 @@ import engine.render.shader.types.PhongShader
 import engine.render.shader.types.ProjectionMatrixShader
 import org.joml.Vector3f
 import org.joml.Vector4f
+import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.opengl.GL30
 import java.util.*
@@ -112,7 +113,8 @@ class Renderer {
 
             GL30.glActiveTexture(GL30.GL_TEXTURE0)
 
-            GL30.glDrawElements(GL30.GL_TRIANGLES, obj.mesh.vertexCount, GL_UNSIGNED_INT, 0)
+            //GL30.glDrawElements(GL30.GL_TRIANGLES, obj.mesh.vertexCount, GL_UNSIGNED_INT, 0)
+            glDrawArrays(GL_TRIANGLES, 0, obj.mesh.vertexCount)
 
             GL30.glDisableVertexAttribArray(0)
             GL30.glDisableVertexAttribArray(1)

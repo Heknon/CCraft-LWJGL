@@ -9,7 +9,10 @@ import engine.render.WorldObject3D
 import engine.render.lighting.PointLight
 import engine.render.lighting.Sun
 import engine.render.model.Camera
-import engine.render.model.Cube
+import game.world.Block
+import game.world.Chunk
+import game.world.ChunkMesh
+import game.world.Location
 import org.joml.Vector3f
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11
@@ -35,18 +38,32 @@ class CCraft : IGameLogic {
     override fun init() {
         renderer.init()
 //        objects.add(WorldObject3D(MeshLoader.createMesh("models/grass.obj")))
-        objects.add(Cube(Vector3f(2f, 0f, -4f)))
-        objects.add(Cube(Vector3f(3f, 0f, -5f)))
-        objects.add(Cube(Vector3f(3f, 0f, -4f)))
-        objects.add(Cube(Vector3f(3f, 1f, -4f)))
 
+        val blocks: MutableList<Block> = mutableListOf()
         for (x in 0 until 10) {
             for (z in 0 until 10) {
                 for (y in 0 until 10) {
-                    objects.add(Cube(Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
+                    blocks.add(Block(0, Location(x.toFloat(), y.toFloat(), z.toFloat())))
+//                    objects.add(WorldObject3D(Block.faces.bottom.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
+//                    objects.add(WorldObject3D(Block.faces.top.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
+//                    objects.add(WorldObject3D(Block.faces.left.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
+//                    objects.add(WorldObject3D(Block.faces.right.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
+//                    objects.add(WorldObject3D(Block.faces.far.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
+//                    objects.add(WorldObject3D(Block.faces.near.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
                 }
             }
         }
+
+        val chunk = Chunk(Location(0f, 0f, 0f), blocks.toTypedArray())
+        val chunkMesh = ChunkMesh(chunk)
+        objects.add(WorldObject3D(
+                mesh = MeshLoader.createMesh(
+                        chunkMesh.positions,
+                        chunkMesh.uvs,
+                        chunkMesh.normals
+                ).addTexture("textures/cube.png")
+        ))
+
     }
 
     override fun render(window: Window) {

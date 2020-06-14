@@ -1,5 +1,7 @@
 package engine.render
 
+import org.joml.Vector2f
+import org.joml.Vector3f
 import org.lwjgl.BufferUtils
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL15
@@ -10,6 +12,16 @@ import java.nio.IntBuffer
 
 
 object MeshLoader {
+    fun createMesh(positions: Array<Vector3f>, uvs: Array<Vector2f>, normals: Array<Vector3f>, indices: IntArray): Mesh {
+        val vao = genVertexArrayObjects()
+        storeData(0, 3, positions)
+        storeData(1, 2, uvs)
+        storeData(2, 3, normals)
+        bindIndices(indices)
+        GL30.glBindVertexArray(0)
+        return Mesh(vao, indices.size)
+    }
+
     fun createMesh(positions: FloatArray, uvs: FloatArray, normals: FloatArray, indices: IntArray): Mesh {
         val vao = genVertexArrayObjects()
         storeData(0, 3, positions)
@@ -18,6 +30,24 @@ object MeshLoader {
         bindIndices(indices)
         GL30.glBindVertexArray(0)
         return Mesh(vao, indices.size)
+    }
+
+    fun createMesh(positions: FloatArray, uvs: FloatArray, normals: FloatArray): Mesh {
+        val vao = genVertexArrayObjects()
+        storeData(0, 3, positions)
+        storeData(1, 2, uvs)
+        storeData(2, 3, normals)
+        GL30.glBindVertexArray(0)
+        return Mesh(vao, positions.size)
+    }
+
+    fun createMesh(positions: Array<Vector3f>, uvs: Array<Vector2f>, normals: Array<Vector3f>): Mesh {
+        val vao = genVertexArrayObjects()
+        storeData(0, 3, positions)
+        storeData(1, 2, uvs)
+        storeData(2, 3, normals)
+        GL30.glBindVertexArray(0)
+        return Mesh(vao, positions.size)
     }
 
     fun createMesh(file: String): Mesh {
@@ -39,6 +69,30 @@ object MeshLoader {
         GL15.glBufferData(GL15.GL_ARRAY_BUFFER, buffer, GL15.GL_STATIC_DRAW)
         GL20.glVertexAttribPointer(attribute, dimensions, GL11.GL_FLOAT, false, 0, 0)
         GL15.glBindBuffer(GL15.GL_ARRAY_BUFFER, 0)
+    }
+
+    private fun storeData(attribute: Int, dimensions: Int, data: Array<Vector3f>) {
+        val array = FloatArray(data.size * 3) {
+            when {
+                it % 3 == 0 -> data[it / 3].x
+                it % 3 == 1 -> data[it / 3].y
+                it % 3 == 2 -> data[it / 3].z
+                else -> 0f
+            }
+        }
+
+        storeData(attribute, dimensions, array)
+    }
+
+    private fun storeData(attribute: Int, dimensions: Int, data: Array<Vector2f>) {
+        val array = FloatArray(data.size * 2) {
+            when {
+                it % 2 == 0 -> data[it / 2].x
+                it % 2 == 1 -> data[it / 2].y
+                else -> 0f
+            }
+        }
+        storeData(attribute, dimensions, array)
     }
 
     private fun bindIndices(data: IntArray) {

@@ -39,8 +39,6 @@ class MouseInput {
     fun input(window: Window?) {
         displVec.x = 0f
         displVec.y = 0f
-        println("CURR X: ${currentPos.x}, CURR Y: ${currentPos.y}")
-        println("PREV X: ${previousPos.x}, PREV Y: ${previousPos.y}")
 
         val deltax = currentPos.x - previousPos.x
         val deltay = currentPos.y - previousPos.y
@@ -52,7 +50,6 @@ class MouseInput {
         if (rotateY) {
             displVec.x = deltay.toFloat()
         }
-        println("x: ${displVec.x}, y: ${displVec.y}")
 
         previousPos.x = currentPos.x
         previousPos.y = currentPos.y

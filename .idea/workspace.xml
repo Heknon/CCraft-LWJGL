@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d91a2e-7ec9-4ae2-87ac-95e8c1ab3dd3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/engine/Vertex.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/Block.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/Chunk.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/ChunkMesh.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/Location.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/OBJLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/OBJLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hs_err_pid39532.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engine/MouseInput.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/MouseInput.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/MeshLoader.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/MeshLoader.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/Renderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/Renderer.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/model/Cube.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/model/Cube.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/CCraft.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/CCraft.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -18,12 +28,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="GLSL Shader" />
-        <option value="FxmlFile" />
         <option value="Class" />
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Object" />
         <option value="Kotlin File" />
+        <option value="FxmlFile" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -164,30 +174,30 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="877" y="352" key="FileChooserDialogImpl/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591862091457" />
-    <state width="2151" height="333" key="GridCell.Tab.0.bottom" timestamp="1592069208329">
+    <state width="2151" height="333" key="GridCell.Tab.0.bottom" timestamp="1592157598390">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592069208329" />
-    <state width="2151" height="333" key="GridCell.Tab.0.center" timestamp="1592069208329">
+    <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592157598390" />
+    <state width="2151" height="333" key="GridCell.Tab.0.center" timestamp="1592157598390">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592069208329" />
-    <state width="2151" height="333" key="GridCell.Tab.0.left" timestamp="1592069208329">
+    <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592157598390" />
+    <state width="2151" height="333" key="GridCell.Tab.0.left" timestamp="1592157598389">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592069208329" />
-    <state width="2151" height="333" key="GridCell.Tab.0.right" timestamp="1592069208329">
+    <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592157598389" />
+    <state width="2151" height="333" key="GridCell.Tab.0.right" timestamp="1592157598390">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592069208329" />
+    <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592157598390" />
     <state x="606" y="239" key="SettingsEditor" timestamp="1591947417872">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="606" y="239" key="SettingsEditor/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591947417872" />
-    <state x="-4040" y="1" width="2008" height="1008" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1592068385330">
+    <state x="-3694" y="34" width="2008" height="958" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1592156648345">
       <screen x="-3840" y="0" width="2194" height="1194" />
     </state>
-    <state x="-4040" y="1" width="2008" height="1008" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592068385330" />
+    <state x="-3694" y="34" width="2008" height="958" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592156648345" />
     <state x="906" y="514" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592034246680">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
@@ -200,10 +210,10 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="524" y="292" key="new project wizard/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591814586028" />
-    <state x="821" y="239" key="refactoring.ChangeSignatureDialog" timestamp="1591982741013">
+    <state x="821" y="239" key="refactoring.ChangeSignatureDialog" timestamp="1592138882639">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="821" y="239" key="refactoring.ChangeSignatureDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591982741012" />
+    <state x="821" y="239" key="refactoring.ChangeSignatureDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592138882639" />
     <state x="754" y="279" key="run.anything.popup" timestamp="1592069097897">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
