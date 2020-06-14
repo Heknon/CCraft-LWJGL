@@ -8,7 +8,8 @@ import org.joml.Vector3f
 class Cube(
         position: Vector3f = Vector3f(0f, 0f, 0f),
         rotation: Vector3f = Vector3f(0f, 0f, 0f),
-        scale: Float = 1f
+        scale: Float = 1f,
+        mesh: Mesh = defaultMesh
 ) : WorldObject3D(mesh, position, rotation, scale) {
     companion object {
         private val positions: FloatArray = floatArrayOf(
@@ -238,11 +239,139 @@ class Cube(
 
 
 
-        private val mesh: Mesh = MeshLoader.createMesh(
+        data class Face(
+                private val vertices: FloatArray,
+                private val textureCoordinates: FloatArray,
+                private val vertexNormal: FloatArray,
+                private val meshIndices: IntArray
+        ) {
+            val mesh = MeshLoader.createMesh(
+                    vertices,
+                    textureCoordinates,
+                    vertexNormal,
+                    meshIndices
+            ).addTexture("textures/cube.png").also { println(defaultMesh) }
+
+            override fun equals(other: Any?): Boolean {
+                if (this === other) return true
+                if (javaClass != other?.javaClass) return false
+
+                other as Face
+
+                if (!vertices.contentEquals(other.vertices)) return false
+                if (!textureCoordinates.contentEquals(other.textureCoordinates)) return false
+                if (!vertexNormal.contentEquals(other.vertexNormal)) return false
+                if (!meshIndices.contentEquals(other.meshIndices)) return false
+                if (mesh != other.mesh) return false
+
+                return true
+            }
+
+            override fun hashCode(): Int {
+                var result = vertices.contentHashCode()
+                result = 31 * result + textureCoordinates.contentHashCode()
+                result = 31 * result + vertexNormal.contentHashCode()
+                result = 31 * result + meshIndices.contentHashCode()
+                result = 31 * result + mesh.hashCode()
+                return result
+            }
+
+
+        }
+
+        data class Faces(
+                val top: Face,
+                val bottom: Face,
+                val near: Face,
+                val far: Face,
+                val left: Face,
+                val right: Face
+        )
+
+        val faces: Faces = Faces(
+                top = Face(
+                        floatArrayOf(
+                                -0.5f, 0.5f, -0.5f,
+                                -0.5f, 0.5f, 0.5f,
+                                0.5f, 0.5f, 0.5f,
+                                0.5f, 0.5f, -0.5f
+                        ),
+                        floatArrayOf(
+                                1.0f, 0.0f,
+                                1.5f, 0.0f,
+                                1.0f, 0.5f,
+
+                                1.0f, 0.0f,
+                                1.5f, 0.0f,
+                                1.0f, 0.5f
+
+                        ),
+                        floatArrayOf(0f, 0f, 1f),
+                        intArrayOf(0, 1, 2, 2, 3, 0)
+                ),
+                bottom = Face(
+                        floatArrayOf(
+                                -0.5f, -0.5f, -0.5f,
+                                -0.5f, -0.5f, 0.5f,
+                                0.5f, -0.5f, 0.5f,
+                                0.5f, -0.5f, -0.5f
+                        ),
+                        uvsModeled,
+                        floatArrayOf(0f, 0f, 1f),
+                        intArrayOf(0, 1, 2, 2, 3, 0)
+                ),
+                near = Face(
+                        floatArrayOf(
+                                -0.5f, 0.5f, -0.5f,
+                                0.5f, 0.5f, -0.5f,
+                                0.5f, -0.5f, -0.5f,
+                                -0.5f, -0.5f, -0.5f
+                        ),
+                        uvsModeled,
+                        floatArrayOf(0f, 0f, 1f),
+                        intArrayOf(0, 1, 2, 2, 3, 0)
+                ),
+                far = Face(
+                        floatArrayOf(
+                                -0.5f, 0.5f, 0.5f,
+                                0.5f, 0.5f, 0.5f,
+                                0.5f, -0.5f, 0.5f,
+                                -0.5f, -0.5f, 0.5f
+                        ),
+                        uvsModeled,
+                        floatArrayOf(0f, 0f, 1f),
+                        intArrayOf(0, 1, 2, 2, 3, 0)
+                ),
+                left = Face(
+                        floatArrayOf(
+                                -0.5f, 0.5f, -0.5f,
+                                -0.5f, 0.5f, 0.5f,
+                                -0.5f, -0.5f, 0.5f,
+                                -0.5f, -0.5f, -0.5f
+                        ),
+                        uvsModeled,
+                        floatArrayOf(0f, 0f, 1f),
+                        intArrayOf(0, 1, 2, 2, 3, 0)
+                ),
+                right = Face(
+                        floatArrayOf(
+                                0.5f, 0.5f, -0.5f,
+                                0.5f, 0.5f, 0.5f,
+                                0.5f, -0.5f, 0.5f,
+                                0.5f, -0.5f, -0.5f
+                        ),
+                        uvsModeled,
+                        floatArrayOf(0f, 0f, 1f),
+                        intArrayOf(0, 1, 2, 2, 3, 0)
+                )
+        )
+
+        private val defaultMesh: Mesh = MeshLoader.createMesh(
                 positionsModeled,
                 uvsModeled,
                 normalModeled,
                 indicesModeled
         ).addTexture("textures/cube.png")
+
     }
 }
