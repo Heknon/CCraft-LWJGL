@@ -7,4 +7,8 @@ class Chunk(origin: Location, val blocks: Array<Block>) : WorldObject3D(null, Ve
     init {
         mesh = ChunkMesh(this)
     }
+
+    fun getBlockAt(x: Int, y: Int, z: Int): Block {
+        return blocks.get(x * y * z)
+    }
 }

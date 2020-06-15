@@ -127,14 +127,8 @@ class ChunkMesh(private val chunk: Chunk) : MeshHolder {
                 else -> 0f
             }
         }
+
+        vertices.clear()
     }
 
-    companion object {
-        private fun calculateNormal(p1: Vector3f, p2: Vector3f, p3: Vector3f): Vector3f {
-            val v = p2.sub(p1)
-            val w = p3.sub(p1)
-
-            return Vector3f(v.y * w.z - v.z * w.y, v.z * w.x - v.x * w.z, v.x * w.y - v.y * w.x)
-        }
-    }
 }

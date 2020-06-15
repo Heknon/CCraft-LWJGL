@@ -9,11 +9,13 @@ import engine.render.WorldObject3D
 import engine.render.lighting.PointLight
 import engine.render.lighting.Sun
 import engine.render.model.Camera
-import game.world.*
+import game.world.Block
+import game.world.Chunk
+import game.world.Location
+import game.world.generator.Noise
 import org.joml.Vector3f
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11
-import java.lang.Math.cos
 
 class CCraft : IGameLogic {
     var lightIntensity = 20.0f
@@ -25,7 +27,7 @@ class CCraft : IGameLogic {
     private var objects: MutableList<WorldObject3D> = mutableListOf()
     private val cameraInc: Vector3f = Vector3f()
     private val camera: Camera = Camera()
-    private val sun: Sun = Sun(lightIntensity =  lightIntensity)
+    private val sun: Sun = Sun(lightIntensity = lightIntensity)
     private val pointLight: PointLight = PointLight(
             lightColor,
             lightPosition,
@@ -36,23 +38,24 @@ class CCraft : IGameLogic {
     override fun init() {
         renderer.init()
 
-        for (i in 0 until 5) {
-            for (j in 0 until 5) {
-                val blocks: MutableList<Block> = mutableListOf()
-                val origin = Location(i * 16f, 0f, j * 16f)
-                println(Noise.noise(99.0, 33.0))
+        val generator = Noise(30, 20, 19, 2004084254)
+        Thread {
+            for (i in 0 until 50) {
+                for (j in 0 until 50) {
+                    val blocks: MutableList<Block> = mutableListOf()
+                    val origin = Location(i * 16f, 0f, j * 16f)
 
-                for (x in 0 until 16) {
-                    for (z in 0 until 16) {
-                        for (y in 0 until 8) {
-                            blocks.add(Block(0, Location(x.toFloat(), (y + kotlin.math.cos(y.toDouble())).toFloat(), z.toFloat())))
+                    for (x in 0 until 16) {
+                        for (z in 0 until 16) {
+                            blocks.add(Block(0, Location(x.toFloat(), generator.generateHeight(x + i * 16, z + j * 16), z.toFloat())))
                         }
                     }
-                }
 
-                objects.add(Chunk(origin, blocks.toTypedArray()))
+                    val chunk = Chunk(origin, blocks.toTypedArray())
+                    objects.add(chunk)
+                }
             }
-        }
+        }.run()
 
     }
 
@@ -133,6 +136,6 @@ class CCraft : IGameLogic {
 
     companion object {
         private const val MOUSE_SENSITIVITY = 0.2f
-        private const val CAMERA_POS_STEP = 0.05f
+        private const val CAMERA_POS_STEP = 1f
     }
 }
