@@ -9,13 +9,11 @@ import engine.render.WorldObject3D
 import engine.render.lighting.PointLight
 import engine.render.lighting.Sun
 import engine.render.model.Camera
-import game.world.Block
-import game.world.Chunk
-import game.world.ChunkMesh
-import game.world.Location
+import game.world.*
 import org.joml.Vector3f
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11
+import java.lang.Math.cos
 
 class CCraft : IGameLogic {
     var lightIntensity = 20.0f
@@ -37,32 +35,24 @@ class CCraft : IGameLogic {
 
     override fun init() {
         renderer.init()
-//        objects.add(WorldObject3D(MeshLoader.createMesh("models/grass.obj")))
 
-        val blocks: MutableList<Block> = mutableListOf()
-        for (x in 0 until 10) {
-            for (z in 0 until 10) {
-                for (y in 0 until 10) {
-                    blocks.add(Block(0, Location(x.toFloat(), y.toFloat(), z.toFloat())))
-//                    objects.add(WorldObject3D(Block.faces.bottom.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
-//                    objects.add(WorldObject3D(Block.faces.top.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
-//                    objects.add(WorldObject3D(Block.faces.left.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
-//                    objects.add(WorldObject3D(Block.faces.right.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
-//                    objects.add(WorldObject3D(Block.faces.far.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
-//                    objects.add(WorldObject3D(Block.faces.near.mesh, Vector3f(x.toFloat(), y.toFloat(), -z.toFloat())))
+        for (i in 0 until 5) {
+            for (j in 0 until 5) {
+                val blocks: MutableList<Block> = mutableListOf()
+                val origin = Location(i * 16f, 0f, j * 16f)
+                println(Noise.noise(99.0, 33.0))
+
+                for (x in 0 until 16) {
+                    for (z in 0 until 16) {
+                        for (y in 0 until 8) {
+                            blocks.add(Block(0, Location(x.toFloat(), (y + kotlin.math.cos(y.toDouble())).toFloat(), z.toFloat())))
+                        }
+                    }
                 }
+
+                objects.add(Chunk(origin, blocks.toTypedArray()))
             }
         }
-
-        val chunk = Chunk(Location(0f, 0f, 0f), blocks.toTypedArray())
-        val chunkMesh = ChunkMesh(chunk)
-        objects.add(WorldObject3D(
-                mesh = MeshLoader.createMesh(
-                        chunkMesh.positions,
-                        chunkMesh.uvs,
-                        chunkMesh.normals
-                ).addTexture("textures/cube.png")
-        ))
 
     }
 

@@ -1,17 +1,26 @@
 package game.world
 
 import engine.Vertex
+import engine.render.Mesh
+import engine.render.MeshHolder
+import engine.render.MeshLoader
 import org.joml.Vector3f
 
-class ChunkMesh(private val chunk: Chunk) {
+class ChunkMesh(private val chunk: Chunk) : MeshHolder {
     private val vertices: MutableList<Vertex> = mutableListOf()
     lateinit var positions: FloatArray
     lateinit var uvs: FloatArray
     lateinit var normals: FloatArray
+    override lateinit var mesh: Mesh
 
     init {
         buildMesh()
         populateLists()
+        mesh = MeshLoader.createMesh(
+                positions,
+                uvs,
+                normals
+        ).addTexture("textures/cube.png")
     }
 
     fun buildMesh() {

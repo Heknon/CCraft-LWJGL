@@ -80,16 +80,16 @@ class Renderer {
         var currentMesh: UUID? = null
 
         for (obj in objects) {
-            if (currentlyBoundVAO != obj.mesh.vertexArrayObjectID) {
+            if (currentlyBoundVAO != obj.mesh!!.mesh.vertexArrayObjectID) {
                 GL30.glBindVertexArray(0)
-                GL30.glBindVertexArray(obj.mesh.vertexArrayObjectID)
-                currentlyBoundVAO = obj.mesh.vertexArrayObjectID
+                GL30.glBindVertexArray(obj.mesh!!.mesh.vertexArrayObjectID)
+                currentlyBoundVAO = obj.mesh!!.mesh.vertexArrayObjectID
             }
 
-            if (currentlyBoundTexture != obj.mesh.texture) {
+            if (currentlyBoundTexture != obj.mesh!!.mesh.texture) {
                 GL30.glBindTexture(GL30.GL_TEXTURE_2D, 0)
-                GL30.glBindTexture(GL30.GL_TEXTURE_2D, obj.mesh.texture)
-                currentlyBoundTexture = obj.mesh.texture
+                GL30.glBindTexture(GL30.GL_TEXTURE_2D, obj.mesh!!.mesh.texture)
+                currentlyBoundTexture = obj.mesh!!.mesh.texture
             }
 
             if (shader is ModelViewMatrixShader) {
@@ -101,9 +101,9 @@ class Renderer {
                 shader.loadModelViewMatrix(modelViewMatrix)
             }
 
-            if (currentMesh != obj.mesh.uuid && shader is PhongShader) {
-                shader.loadMaterial(obj.mesh.material)
-                currentMesh = obj.mesh.uuid
+            if (currentMesh != obj.mesh!!.mesh.uuid && shader is PhongShader) {
+                shader.loadMaterial(obj.mesh!!.mesh.material)
+                currentMesh = obj.mesh!!.mesh.uuid
             }
 
 
@@ -114,7 +114,7 @@ class Renderer {
             GL30.glActiveTexture(GL30.GL_TEXTURE0)
 
             //GL30.glDrawElements(GL30.GL_TRIANGLES, obj.mesh.vertexCount, GL_UNSIGNED_INT, 0)
-            glDrawArrays(GL_TRIANGLES, 0, obj.mesh.vertexCount)
+            glDrawArrays(GL_TRIANGLES, 0, obj.mesh!!.mesh.vertexCount)
 
             GL30.glDisableVertexAttribArray(0)
             GL30.glDisableVertexAttribArray(1)

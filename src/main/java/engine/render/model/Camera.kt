@@ -6,7 +6,7 @@ import org.joml.Vector3f
 import kotlin.math.cos
 import kotlin.math.sin
 
-class Camera(position: Vector3f = Vector3f(0f, 0f, 0f), rotation: Vector3f = Vector3f(0f, 0f, 0f)) : WorldObject3D(mesh, position, rotation, 0f) {
+class Camera(position: Vector3f = Vector3f(0f, 0f, 0f), rotation: Vector3f = Vector3f(0f, 0f, 0f)) : WorldObject3D(null, position, rotation, 0f) {
     fun movePosition(offsetX: Float, offsetY: Float, offsetZ: Float) {
         if (offsetZ != 0f) {
             position.x += sin(Math.toRadians(rotation.y.toDouble())).toFloat() * -1.0f * offsetZ
