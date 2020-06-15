@@ -104,19 +104,28 @@ class ChunkMesh(private val chunk: Chunk) {
 
         normals = FloatArray(vertices.size * 3) {
             when {
-                it % 3 == 0 -> vertices[it / 18].normal.x
-                it % 3 == 1 -> vertices[it / 18].normal.y
-                it % 3 == 2 -> vertices[it / 18].normal.z
+                it % 3 == 0 -> vertices[it / 3].normal.x
+                it % 3 == 1 -> vertices[it / 3].normal.y
+                it % 3 == 2 -> vertices[it / 3].normal.z
                 else -> 0f
             }
         }
 
         uvs = FloatArray(vertices.size * 2) {
             when {
-                it % 2 == 0 -> vertices[it / 12].textureCoordinate.x
-                it % 2 == 1 -> vertices[it / 12].textureCoordinate.y
+                it % 2 == 0 -> vertices[it / 2].textureCoordinate.x
+                it % 2 == 1 -> vertices[it / 2].textureCoordinate.y
                 else -> 0f
             }
+        }
+    }
+
+    companion object {
+        private fun calculateNormal(p1: Vector3f, p2: Vector3f, p3: Vector3f): Vector3f {
+            val v = p2.sub(p1)
+            val w = p3.sub(p1)
+
+            return Vector3f(v.y * w.z - v.z * w.y, v.z * w.x - v.x * w.z, v.x * w.y - v.y * w.x)
         }
     }
 }

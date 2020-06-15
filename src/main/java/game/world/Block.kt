@@ -51,33 +51,34 @@ data class Block(val type: Short, val location: Location) {
         )
 
         private val sideUV = arrayOf(
-                Vector2f(0.5f, 0.5f),
+                Vector2f(0.0f, 0.0f),
                 Vector2f(0.5f, 0.0f),
                 Vector2f(0.0f, 0.5f),
 
-                Vector2f(0.0f, 0.0f),
-                Vector2f(0.5f, 0.0f),
-                Vector2f(0.0f, 0.5f)
+                Vector2f(0.0f, 0.5f),
+                Vector2f(0.5f, 0.5f),
+                Vector2f(0.5f, 0.0f)
+
         )
 
         val faces: Faces = Faces(
                 top = Face(
                         arrayOf(
-                                Vector3f(-0.5f, 0.5f, -0.5f),
                                 Vector3f(-0.5f, 0.5f, 0.5f),
                                 Vector3f(0.5f, 0.5f, 0.5f),
+                                Vector3f(-0.5f, 0.5f, -0.5f),
+                                Vector3f(-0.5f, 0.5f, -0.5f),
                                 Vector3f(0.5f, 0.5f, -0.5f),
-                                Vector3f(0.5f, 0.5f, 0.5f),
-                                Vector3f(-0.5f, 0.5f, -0.5f)
+                                Vector3f(0.5f, 0.5f, 0.5f)
                         ),
                         arrayOf(
                                 Vector2f(0.0f, 0.5f),
                                 Vector2f(0.5f, 0.5f),
-                                Vector2f(0.5f, 1.0f),
+                                Vector2f(0.0f, 1.0f),
 
                                 Vector2f(0.0f, 1.0f),
-                                Vector2f(0.0f, 0.5f),
-                                Vector2f(0.5f, 1.0f)
+                                Vector2f(0.5f, 1.0f),
+                                Vector2f(0.5f, 0.5f)
                         ),
                         arrayOf(
                                 Vector3f(0f, 1f, 0f),
@@ -91,21 +92,21 @@ data class Block(val type: Short, val location: Location) {
                 ),
                 bottom = Face(
                         arrayOf(
-                                Vector3f(-0.5f, -0.5f, -0.5f),
                                 Vector3f(-0.5f, -0.5f, 0.5f),
                                 Vector3f(0.5f, -0.5f, 0.5f),
+                                Vector3f(-0.5f, -0.5f, -0.5f),
+                                Vector3f(-0.5f, -0.5f, -0.5f),
                                 Vector3f(0.5f, -0.5f, -0.5f),
-                                Vector3f(0.5f, -0.5f, 0.5f),
-                                Vector3f(-0.5f, -0.5f, -0.5f)
+                                Vector3f(0.5f, -0.5f, 0.5f)
                         ),
                         arrayOf(
                                 Vector2f(0.5f, 0.0f),
                                 Vector2f(1.0f, 0.0f),
-                                Vector2f(1.0f, 0.5f),
+                                Vector2f(0.5f, 0.5f),
 
                                 Vector2f(0.5f, 0.5f),
-                                Vector2f(0.5f, 0.0f),
-                                Vector2f(1.0f, 0.5f)
+                                Vector2f(1.0f, 0.5f),
+                                Vector2f(1.0f, 0.0f)
                         ),
                         arrayOf(
                                 Vector3f(0f, 1f, 0f),
@@ -121,10 +122,10 @@ data class Block(val type: Short, val location: Location) {
                         arrayOf(
                                 Vector3f(-0.5f, 0.5f, -0.5f),
                                 Vector3f(0.5f, 0.5f, -0.5f),
-                                Vector3f(0.5f, -0.5f, -0.5f),
+                                Vector3f(-0.5f, -0.5f, -0.5f),
                                 Vector3f(-0.5f, -0.5f, -0.5f),
                                 Vector3f(0.5f, -0.5f, -0.5f),
-                                Vector3f(-0.5f, 0.5f, -0.5f)
+                                Vector3f(0.5f, 0.5f, -0.5f)
                         ),
                         sideUV,
                         arrayOf(
@@ -141,10 +142,10 @@ data class Block(val type: Short, val location: Location) {
                         arrayOf(
                                 Vector3f(-0.5f, 0.5f, 0.5f),
                                 Vector3f(0.5f, 0.5f, 0.5f),
-                                Vector3f(0.5f, -0.5f, 0.5f),
+                                Vector3f(-0.5f, -0.5f, 0.5f),
                                 Vector3f(-0.5f, -0.5f, 0.5f),
                                 Vector3f(0.5f, -0.5f, 0.5f),
-                                Vector3f(-0.5f, 0.5f, 0.5f)
+                                Vector3f(0.5f, 0.5f, 0.5f)
                         ),
                         sideUV,
                         arrayOf(
@@ -159,11 +160,11 @@ data class Block(val type: Short, val location: Location) {
                 ),
                 left = Face(
                         arrayOf(
-                                Vector3f(-0.5f, 0.5f, -0.5f),
                                 Vector3f(-0.5f, 0.5f, 0.5f),
+                                Vector3f(-0.5f, 0.5f, -0.5f),
+                                Vector3f(-0.5f, -0.5f, 0.5f),
                                 Vector3f(-0.5f, -0.5f, 0.5f),
                                 Vector3f(-0.5f, -0.5f, -0.5f),
-                                Vector3f(-0.5f, -0.5f, 0.5f),
                                 Vector3f(-0.5f, 0.5f, -0.5f)
                         ),
                         sideUV,
@@ -179,11 +180,11 @@ data class Block(val type: Short, val location: Location) {
                 ),
                 right = Face(
                         arrayOf(
-                                Vector3f(0.5f, 0.5f, -0.5f),
                                 Vector3f(0.5f, 0.5f, 0.5f),
+                                Vector3f(0.5f, 0.5f, -0.5f),
+                                Vector3f(0.5f, -0.5f, 0.5f),
                                 Vector3f(0.5f, -0.5f, 0.5f),
                                 Vector3f(0.5f, -0.5f, -0.5f),
-                                Vector3f(0.5f, -0.5f, 0.5f),
                                 Vector3f(0.5f, 0.5f, -0.5f)
                         ),
                         sideUV,
