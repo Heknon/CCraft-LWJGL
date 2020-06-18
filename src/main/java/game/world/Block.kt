@@ -1,25 +1,18 @@
 package game.world
 
 import engine.render.MeshLoader
+import engine.render.lighting.LightMaterial
 import org.joml.Vector2f
 import org.joml.Vector3f
 
-data class Block(val type: Short, val location: Location) {
-
+data class Block(val type: Short, val location: Location, val lightMaterial: LightMaterial) {
 
     companion object {
         data class Face(
                 val vertices: Array<Vector3f>,
                 val textureCoordinates: Array<Vector2f>,
-                val vertexNormal: Array<Vector3f>,
-                val indices: IntArray
+                val vertexNormal: Array<Vector3f>
         ) {
-            val mesh = MeshLoader.createMesh(
-                    vertices,
-                    textureCoordinates,
-                    vertexNormal
-            ).addTexture("textures/cube.png")
-
             override fun equals(other: Any?): Boolean {
                 if (this === other) return true
                 if (javaClass != other?.javaClass) return false
@@ -87,8 +80,7 @@ data class Block(val type: Short, val location: Location) {
                                 Vector3f(0f, 1f, 0f),
                                 Vector3f(0f, 1f, 0f),
                                 Vector3f(0f, 1f, 0f)
-                        ),
-                        intArrayOf(0, 1, 2, 3, 2, 0)
+                        )
                 ),
                 bottom = Face(
                         arrayOf(
@@ -115,8 +107,7 @@ data class Block(val type: Short, val location: Location) {
                                 Vector3f(0f, 1f, 0f),
                                 Vector3f(0f, 1f, 0f),
                                 Vector3f(0f, 1f, 0f)
-                        ),
-                        intArrayOf(0, 1, 2, 3, 2, 0)
+                        )
                 ),
                 near = Face(
                         arrayOf(
@@ -135,8 +126,7 @@ data class Block(val type: Short, val location: Location) {
                                 Vector3f(0f, 0f, -1f),
                                 Vector3f(0f, 0f, -1f),
                                 Vector3f(0f, 0f, -1f)
-                        ),
-                        intArrayOf(0, 1, 2, 3, 2, 0)
+                        )
                 ),
                 far = Face(
                         arrayOf(
@@ -155,8 +145,7 @@ data class Block(val type: Short, val location: Location) {
                                 Vector3f(0f, 0f, -1f),
                                 Vector3f(0f, 0f, -1f),
                                 Vector3f(0f, 0f, -1f)
-                        ),
-                        intArrayOf(0, 1, 2, 3, 2, 0)
+                        )
                 ),
                 left = Face(
                         arrayOf(
@@ -175,8 +164,7 @@ data class Block(val type: Short, val location: Location) {
                                 Vector3f(1f, 0f, 0f),
                                 Vector3f(1f, 0f, 0f),
                                 Vector3f(1f, 0f, 0f)
-                        ),
-                        intArrayOf(0, 1, 2, 3, 2, 0)
+                        )
                 ),
                 right = Face(
                         arrayOf(
@@ -195,8 +183,7 @@ data class Block(val type: Short, val location: Location) {
                                 Vector3f(1f, 0f, 0f),
                                 Vector3f(1f, 0f, 0f),
                                 Vector3f(1f, 0f, 0f)
-                        ),
-                        intArrayOf(0, 1, 2, 3, 2, 0)
+                        )
                 )
         )
     }

@@ -1,7 +1,7 @@
 package engine.render.shader.shaders
 
 import engine.render.lighting.DirectionalLight
-import engine.render.lighting.Material
+import engine.render.lighting.LightMaterial
 import engine.render.lighting.PointLight
 import engine.render.shader.Shader
 import engine.render.shader.types.DirectionalLightShader
@@ -54,12 +54,12 @@ abstract class MatrixShader(
         load(modelViewMatrixLocation, matrix)
     }
 
-    override fun loadMaterial(material: Material) {
-        load(materialLocation["ambient"]!!, material.ambientColor)
-        load(materialLocation["diffuse"]!!, material.diffuseColor)
-        load(materialLocation["specular"]!!, material.specularColor)
-        load(materialLocation["hasTexture"]!!, material.isTextured)
-        load(materialLocation["reflectance"]!!, material.reflectance)
+    override fun loadMaterial(lightMaterial: LightMaterial) {
+        load(materialLocation["ambient"]!!, lightMaterial.ambientColor)
+        load(materialLocation["diffuse"]!!, lightMaterial.diffuseColor)
+        load(materialLocation["specular"]!!, lightMaterial.specularColor)
+        load(materialLocation["hasTexture"]!!, lightMaterial.isTextured)
+        load(materialLocation["reflectance"]!!, lightMaterial.reflectance)
     }
 
     override fun loadPointLight(pointLight: PointLight) {

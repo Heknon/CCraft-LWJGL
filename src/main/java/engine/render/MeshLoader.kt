@@ -1,5 +1,6 @@
 package engine.render
 
+import kotlinx.coroutines.GlobalScope
 import org.joml.Vector2f
 import org.joml.Vector3f
 import org.lwjgl.BufferUtils
@@ -55,6 +56,7 @@ object MeshLoader {
     }
 
     private fun genVertexArrayObjects(): Int {
+        println(Thread.currentThread().name)
         val vao = GL30.glGenVertexArrays()
         vertexArrayObjects.add(vao)
         GL30.glBindVertexArray(vao)

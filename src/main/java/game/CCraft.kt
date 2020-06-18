@@ -6,22 +6,29 @@ import engine.Window
 import engine.render.MeshLoader
 import engine.render.Renderer
 import engine.render.WorldObject3D
+import engine.render.lighting.LightMaterial
 import engine.render.lighting.PointLight
 import engine.render.lighting.Sun
 import engine.render.model.Camera
 import game.world.Block
 import game.world.Chunk
 import game.world.Location
-import game.world.generator.Noise
+import game.world.OpenSimplexNoise
+import org.joml.Random
 import org.joml.Vector3f
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11
+import java.util.concurrent.ThreadLocalRandom
+import javax.swing.Spring.height
+import javax.swing.Spring.width
+
 
 class CCraft : IGameLogic {
     var lightIntensity = 20.0f
     val ambientLight = Vector3f(0.3f, 0.3f, 0.3f);
     var lightColor = Vector3f(1f, 1f, 1f)
     var lightPosition = Vector3f(0f, 0f, 1f)
+    val lightMaterial = LightMaterial()
 
     private val renderer: Renderer = Renderer()
     private var objects: MutableList<WorldObject3D> = mutableListOf()
@@ -38,24 +45,28 @@ class CCraft : IGameLogic {
     override fun init() {
         renderer.init()
 
-        val generator = Noise(30, 20, 19, 2004084254)
-        Thread {
-            for (i in 0 until 50) {
-                for (j in 0 until 50) {
-                    val blocks: MutableList<Block> = mutableListOf()
-                    val origin = Location(i * 16f, 0f, j * 16f)
+        val rand = ThreadLocalRandom.current()
+        val generator = OpenSimplexNoise(rand.nextLong(Random.newSeed(), Long.MAX_VALUE))
+        for (i in 0 until 50) {
+            for (j in 0 until 50) {
+                val blocks: MutableList<Block> = mutableListOf()
+                val origin = Location(i * 16f, 0f, j * 16f)
 
-                    for (x in 0 until 16) {
-                        for (z in 0 until 16) {
-                            blocks.add(Block(0, Location(x.toFloat(), generator.generateHeight(x + i * 16, z + j * 16), z.toFloat())))
-                        }
+                for (x in 0 until 16) {
+                    for (z in 0 until 16) {
+                        val nx: Double = (x + i * 16f) / 16.0 - 0.5
+                        val nz: Double = (z + j * 16f) / 16.0 - 0.5
+                        blocks.add(Block(0, Location(x.toFloat(), (generator.eval(nx, nz)) * 16, z.toFloat()), lightMaterial))
                     }
-
-                    val chunk = Chunk(origin, blocks.toTypedArray())
-                    objects.add(chunk)
                 }
+
+
+                val chunk = Chunk(origin, blocks.toTypedArray())
+                objects.add(chunk)
+                println("chunk added")
             }
-        }.run()
+        }
+        println("FINISHED INIT")
 
     }
 

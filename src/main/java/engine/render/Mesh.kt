@@ -1,6 +1,6 @@
 package engine.render
 
-import engine.render.lighting.Material
+import engine.render.lighting.LightMaterial
 import org.lwjgl.opengl.GL11
 import org.lwjgl.opengl.GL30
 import java.util.*
@@ -10,11 +10,11 @@ data class Mesh(val vertexArrayObjectID: Int, val vertexCount: Int) {
         private set
 
     val uuid: UUID = UUID.randomUUID()
-    var material: Material = Material()
+    var lightMaterial: LightMaterial = LightMaterial()
 
     fun addTexture(texture: String): Mesh {
         this.texture = Texture.loadTexture(texture)
-        material.textureId = this.texture
+        lightMaterial.textureId = this.texture
         return this
     }
 
