@@ -19,8 +19,7 @@ import org.joml.Vector3f
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11
 import java.util.concurrent.ThreadLocalRandom
-import javax.swing.Spring.height
-import javax.swing.Spring.width
+import kotlin.math.floor
 
 
 class CCraft : IGameLogic {
@@ -47,23 +46,29 @@ class CCraft : IGameLogic {
 
         val rand = ThreadLocalRandom.current()
         val generator = OpenSimplexNoise(rand.nextLong(Random.newSeed(), Long.MAX_VALUE))
-        for (i in 0 until 50) {
-            for (j in 0 until 50) {
+        val featureSize = 40.0
+        for (x in 0 until 2) {
+            for (z in 0 until 2) {
                 val blocks: MutableList<Block> = mutableListOf()
-                val origin = Location(i * 16f, 0f, j * 16f)
+                val origin = Location(x * 16f, 0f, z * 16f)
 
-                for (x in 0 until 16) {
-                    for (z in 0 until 16) {
-                        val nx: Double = (x + i * 16f) / 16.0 - 0.5
-                        val nz: Double = (z + j * 16f) / 16.0 - 0.5
-                        blocks.add(Block(0, Location(x.toFloat(), (generator.eval(nx, nz)) * 16, z.toFloat()), lightMaterial))
+                for (offsetX in 0 until 16) {
+                    for (offsetZ in 0 until 16) {
+                        for (y in 0 until 128) {
+                            val nx: Double = (offsetX + x * 16) / featureSize - 0.5
+                            val nz: Double = (offsetZ + z * 16) / featureSize - 0.5
+                            val height = floor(generator.eval(nx, nz) * 16.0) - y
+                            val density = generator.eval(nx, height, nz)
+
+                            if (density < -0.5) continue
+                            blocks.add(Block(0, Location(offsetX.toFloat(), height.toFloat(), offsetZ.toFloat())))
+                        }
                     }
                 }
 
 
                 val chunk = Chunk(origin, blocks.toTypedArray())
                 objects.add(chunk)
-                println("chunk added")
             }
         }
         println("FINISHED INIT")

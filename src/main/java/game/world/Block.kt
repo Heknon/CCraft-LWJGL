@@ -1,11 +1,9 @@
 package game.world
 
-import engine.render.MeshLoader
-import engine.render.lighting.LightMaterial
 import org.joml.Vector2f
 import org.joml.Vector3f
 
-data class Block(val type: Short, val location: Location, val lightMaterial: LightMaterial) {
+data class Block(val type: Short, val location: Location) {
 
     companion object {
         data class Face(
