@@ -3,7 +3,7 @@ package game.world
 import org.joml.Vector2f
 import org.joml.Vector3f
 
-data class Block(val type: Short, val location: Location) {
+data class Block(val type: Short, val x: Int, val y: Int, val z: Int) {
 
     companion object {
         data class Face(

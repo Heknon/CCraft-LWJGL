@@ -11,6 +11,8 @@ import engine.render.shader.types.DirectionalLightShader
 import engine.render.shader.types.ModelViewMatrixShader
 import engine.render.shader.types.PhongShader
 import engine.render.shader.types.ProjectionMatrixShader
+import game.world.ChunkMesh
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.joml.Vector3f
 import org.joml.Vector4f
 import org.lwjgl.opengl.GL11.*
@@ -39,6 +41,7 @@ class Renderer {
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
     }
 
+    @ExperimentalCoroutinesApi
     fun render(
             objects: List<WorldObject3D>,
             shader: Shader,
@@ -51,7 +54,7 @@ class Renderer {
 
         val viewMatrix = spaceTransformer3D.getViewMatrix(camera)
 
-        println("doing render")
+        //println("doing render")
 
         if (shader is PhongShader) {
             val currPointLight = PointLight(pointLight)
@@ -80,16 +83,17 @@ class Renderer {
         var currentMesh: UUID? = null
 
         for (obj in objects) {
-            if (currentlyBoundVAO != obj.mesh!!.mesh.vertexArrayObjectID) {
+            val mesh = obj.mesh?.mesh ?: continue
+            if (currentlyBoundVAO != mesh.vertexArrayObjectID) {
                 GL30.glBindVertexArray(0)
-                GL30.glBindVertexArray(obj.mesh!!.mesh.vertexArrayObjectID)
-                currentlyBoundVAO = obj.mesh!!.mesh.vertexArrayObjectID
+                GL30.glBindVertexArray(mesh.vertexArrayObjectID)
+                currentlyBoundVAO = mesh.vertexArrayObjectID
             }
 
-            if (currentlyBoundTexture != obj.mesh!!.mesh.texture) {
+            if (currentlyBoundTexture != mesh.texture) {
                 GL30.glBindTexture(GL30.GL_TEXTURE_2D, 0)
-                GL30.glBindTexture(GL30.GL_TEXTURE_2D, obj.mesh!!.mesh.texture)
-                currentlyBoundTexture = obj.mesh!!.mesh.texture
+                GL30.glBindTexture(GL30.GL_TEXTURE_2D, mesh.texture)
+                currentlyBoundTexture = mesh.texture
             }
 
             if (shader is ModelViewMatrixShader) {
@@ -101,9 +105,9 @@ class Renderer {
                 shader.loadModelViewMatrix(modelViewMatrix)
             }
 
-            if (currentMesh != obj.mesh!!.mesh.uuid && shader is PhongShader) {
-                shader.loadMaterial(obj.mesh!!.mesh.lightMaterial)
-                currentMesh = obj.mesh!!.mesh.uuid
+            if (currentMesh != mesh.uuid && shader is PhongShader) {
+                shader.loadMaterial(mesh.lightMaterial)
+                currentMesh = mesh.uuid
             }
 
             GL30.glEnableVertexAttribArray(0)
@@ -112,7 +116,7 @@ class Renderer {
 
             GL30.glActiveTexture(GL30.GL_TEXTURE0)
 
-            glDrawArrays(GL_TRIANGLES, 0, obj.mesh!!.mesh.vertexCount)
+            glDrawArrays(GL_TRIANGLES, 0, mesh.vertexCount)
 
             GL30.glDisableVertexAttribArray(0)
             GL30.glDisableVertexAttribArray(1)

@@ -3,24 +3,32 @@ package game.world
 import engine.Vertex
 import engine.render.Mesh
 import engine.render.MeshHolder
-import engine.render.MeshLoader
+import game.CCraft
 import org.joml.Vector3f
+import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.ConcurrentMap
+import java.util.concurrent.Future
 
 class ChunkMesh(private val chunk: Chunk) : MeshHolder {
     private val vertices: MutableList<Vertex> = mutableListOf()
     lateinit var positions: FloatArray
     lateinit var uvs: FloatArray
     lateinit var normals: FloatArray
-    override lateinit var mesh: Mesh
+    override var mesh: Mesh? = null
 
     init {
-        buildMesh()
-        populateLists()
-        mesh = MeshLoader.createMesh(
-                positions,
-                uvs,
-                normals
-        ).addTexture("textures/cube.png")
+        services[CCraft.executorService.submit {
+            buildMesh()
+            println("FINISHED BUILDING MESH")
+            populateLists()
+        }] = this
+//        mesh = GlobalScope.async {
+//            MeshLoader.createMesh(
+//                    positions,
+//                    uvs,
+//                    normals
+//            ).addTexture("textures/cube.png")
+//        }
     }
 
     fun buildMesh() {
@@ -31,33 +39,34 @@ class ChunkMesh(private val chunk: Chunk) : MeshHolder {
             var negativeY = false
             var positiveZ = false
             var negativeZ = false
+
             for (blockJ in chunk.blocks) {
                 // find visible faces
-                val zEqual = blockI.location.z == blockJ.location.z
-                val yEqual = blockI.location.y == blockJ.location.y
-                val xEqual = blockI.location.x == blockJ.location.x
+                val zEqual = blockI.z == blockJ.z
+                val yEqual = blockI.y == blockJ.y
+                val xEqual = blockI.x == blockJ.x
 
-                if (blockI.location.x + 1 == blockJ.location.x && yEqual && zEqual) {
+                if (blockI.x + 1 == blockJ.x && yEqual && zEqual) {
                     positiveX = true;
                 }
 
-                if (blockI.location.x - 1 == blockJ.location.x && yEqual && zEqual) {
+                if (blockI.x - 1 == blockJ.x && yEqual && zEqual) {
                     negativeX = true;
                 }
 
-                if (xEqual && blockI.location.y + 1 == blockJ.location.y && zEqual) {
+                if (xEqual && blockI.y + 1 == blockJ.y && zEqual) {
                     positiveY = true;
                 }
 
-                if (xEqual && blockI.location.y - 1 == blockJ.location.y && zEqual) {
+                if (xEqual && blockI.y - 1 == blockJ.y && zEqual) {
                     negativeY = true;
                 }
 
-                if (xEqual && yEqual && blockI.location.z + 1 == blockJ.location.z) {
+                if (xEqual && yEqual && blockI.z + 1 == blockJ.z) {
                     positiveZ = true;
                 }
 
-                if (xEqual && yEqual && blockI.location.z - 1 == blockJ.location.z) {
+                if (xEqual && yEqual && blockI.z - 1 == blockJ.z) {
                     negativeZ = true;
                 }
             }
@@ -65,37 +74,37 @@ class ChunkMesh(private val chunk: Chunk) : MeshHolder {
             // add visible faces to chunk mesh
             if (!positiveX) {
                 for (k in 0 until 6) {
-                    vertices.add(Vertex(Vector3f(Block.faces.right.vertices[k].x + blockI.location.x, Block.faces.right.vertices[k].y + blockI.location.y, Block.faces.right.vertices[k].z + blockI.location.z), Block.faces.right.textureCoordinates[k], Block.faces.right.vertexNormal[k]))
+                    vertices.add(Vertex(Vector3f(Block.faces.right.vertices[k].x + blockI.x, Block.faces.right.vertices[k].y + blockI.y, Block.faces.right.vertices[k].z + blockI.z), Block.faces.right.textureCoordinates[k], Block.faces.right.vertexNormal[k]))
                 }
             }
 
             if (!negativeX) {
                 for (k in 0 until 6) {
-                    vertices.add(Vertex(Vector3f(Block.faces.left.vertices[k].x + blockI.location.x, Block.faces.left.vertices[k].y + blockI.location.y, Block.faces.left.vertices[k].z + blockI.location.z), Block.faces.left.textureCoordinates[k], Block.faces.left.vertexNormal[k]))
+                    vertices.add(Vertex(Vector3f(Block.faces.left.vertices[k].x + blockI.x, Block.faces.left.vertices[k].y + blockI.y, Block.faces.left.vertices[k].z + blockI.z), Block.faces.left.textureCoordinates[k], Block.faces.left.vertexNormal[k]))
                 }
             }
 
             if (!positiveY) {
                 for (k in 0 until 6) {
-                    vertices.add(Vertex(Vector3f(Block.faces.top.vertices[k].x + blockI.location.x, Block.faces.top.vertices[k].y + blockI.location.y, Block.faces.top.vertices[k].z + blockI.location.z), Block.faces.top.textureCoordinates[k], Block.faces.top.vertexNormal[k]))
+                    vertices.add(Vertex(Vector3f(Block.faces.top.vertices[k].x + blockI.x, Block.faces.top.vertices[k].y + blockI.y, Block.faces.top.vertices[k].z + blockI.z), Block.faces.top.textureCoordinates[k], Block.faces.top.vertexNormal[k]))
                 }
             }
 
             if (!negativeY) {
                 for (k in 0 until 6) {
-                    vertices.add(Vertex(Vector3f(Block.faces.bottom.vertices[k].x + blockI.location.x, Block.faces.bottom.vertices[k].y + blockI.location.y, Block.faces.bottom.vertices[k].z + blockI.location.z), Block.faces.bottom.textureCoordinates[k], Block.faces.bottom.vertexNormal[k]))
+                    vertices.add(Vertex(Vector3f(Block.faces.bottom.vertices[k].x + blockI.x, Block.faces.bottom.vertices[k].y + blockI.y, Block.faces.bottom.vertices[k].z + blockI.z), Block.faces.bottom.textureCoordinates[k], Block.faces.bottom.vertexNormal[k]))
                 }
             }
 
             if (!positiveZ) {
                 for (k in 0 until 6) {
-                    vertices.add(Vertex(Vector3f(Block.faces.far.vertices[k].x + blockI.location.x, Block.faces.far.vertices[k].y + blockI.location.y, Block.faces.far.vertices[k].z + blockI.location.z), Block.faces.far.textureCoordinates[k], Block.faces.far.vertexNormal[k]))
+                    vertices.add(Vertex(Vector3f(Block.faces.far.vertices[k].x + blockI.x, Block.faces.far.vertices[k].y + blockI.y, Block.faces.far.vertices[k].z + blockI.z), Block.faces.far.textureCoordinates[k], Block.faces.far.vertexNormal[k]))
                 }
             }
 
             if (!negativeZ) {
                 for (k in 0 until 6) {
-                    vertices.add(Vertex(Vector3f(Block.faces.near.vertices[k].x + blockI.location.x, Block.faces.near.vertices[k].y + blockI.location.y, Block.faces.near.vertices[k].z + blockI.location.z), Block.faces.near.textureCoordinates[k], Block.faces.near.vertexNormal[k]))
+                    vertices.add(Vertex(Vector3f(Block.faces.near.vertices[k].x + blockI.x, Block.faces.near.vertices[k].y + blockI.y, Block.faces.near.vertices[k].z + blockI.z), Block.faces.near.textureCoordinates[k], Block.faces.near.vertexNormal[k]))
                 }
             }
         }
@@ -129,6 +138,10 @@ class ChunkMesh(private val chunk: Chunk) : MeshHolder {
         }
 
         vertices.clear()
+    }
+
+    companion object {
+        val services: ConcurrentMap<Future<*>, ChunkMesh> = ConcurrentHashMap()
     }
 
 }

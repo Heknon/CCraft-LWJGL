@@ -5,7 +5,7 @@ import org.joml.Vector3f
 import java.util.*
 
 object OBJLoader {
-    fun loadMesh(fileName: String): Mesh {
+    suspend fun loadMesh(fileName: String): Mesh {
         val lines = this::class.java.getResource("/$fileName").readText().split("\n")
 
         val vertices: MutableList<Vector3f> = ArrayList()
@@ -42,7 +42,7 @@ object OBJLoader {
         return reorderLists(vertices, textures, normals, faces)
     }
 
-    private fun reorderLists(
+    private suspend fun reorderLists(
             posList: List<Vector3f>,
             textureCoordinateList: List<Vector2f>,
             normalList: List<Vector3f>,

@@ -9,6 +9,6 @@ class Chunk(origin: Location, val blocks: Array<Block>) : WorldObject3D(null, Ve
     }
 
     fun getBlockAt(x: Int, y: Int, z: Int): Block {
-        return blocks.get(x * y * z)
+        return blocks[x * y * z]
     }
 }

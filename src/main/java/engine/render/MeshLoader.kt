@@ -1,6 +1,5 @@
 package engine.render
 
-import kotlinx.coroutines.GlobalScope
 import org.joml.Vector2f
 import org.joml.Vector3f
 import org.lwjgl.BufferUtils
@@ -13,50 +12,39 @@ import java.nio.IntBuffer
 
 
 object MeshLoader {
-    fun createMesh(positions: Array<Vector3f>, uvs: Array<Vector2f>, normals: Array<Vector3f>, indices: IntArray): Mesh {
-        val vao = genVertexArrayObjects()
-        storeData(0, 3, positions)
-        storeData(1, 2, uvs)
-        storeData(2, 3, normals)
-        bindIndices(indices)
-        GL30.glBindVertexArray(0)
-        return Mesh(vao, indices.size)
+    suspend fun createMesh(positions: Array<Vector3f>, uvs: Array<Vector2f>, normals: Array<Vector3f>, indices: IntArray): Mesh {
+        val positionsActual = vectorArrayToFloatArray(positions)
+        val uvsActual = vectorArrayToFloatArray(uvs)
+        val normalsActual = vectorArrayToFloatArray(normals)
+        return createMesh(positionsActual, uvsActual, normalsActual, indices)
     }
 
-    fun createMesh(positions: FloatArray, uvs: FloatArray, normals: FloatArray, indices: IntArray): Mesh {
+    fun createMesh(positions: FloatArray, uvs: FloatArray, normals: FloatArray, indices: IntArray?): Mesh {
         val vao = genVertexArrayObjects()
         storeData(0, 3, positions)
         storeData(1, 2, uvs)
         storeData(2, 3, normals)
-        bindIndices(indices)
+        if (indices != null) bindIndices(indices)
         GL30.glBindVertexArray(0)
-        return Mesh(vao, indices.size)
+        return Mesh(vao, indices?.size ?: positions.size)
     }
 
     fun createMesh(positions: FloatArray, uvs: FloatArray, normals: FloatArray): Mesh {
-        val vao = genVertexArrayObjects()
-        storeData(0, 3, positions)
-        storeData(1, 2, uvs)
-        storeData(2, 3, normals)
-        GL30.glBindVertexArray(0)
-        return Mesh(vao, positions.size)
+        return createMesh(positions, uvs, normals, null)
     }
 
-    fun createMesh(positions: Array<Vector3f>, uvs: Array<Vector2f>, normals: Array<Vector3f>): Mesh {
-        val vao = genVertexArrayObjects()
-        storeData(0, 3, positions)
-        storeData(1, 2, uvs)
-        storeData(2, 3, normals)
-        GL30.glBindVertexArray(0)
-        return Mesh(vao, positions.size)
+    suspend fun createMesh(positions: Array<Vector3f>, uvs: Array<Vector2f>, normals: Array<Vector3f>): Mesh {
+        val positionsActual = vectorArrayToFloatArray(positions)
+        val uvsActual = vectorArrayToFloatArray(uvs)
+        val normalsActual = vectorArrayToFloatArray(normals)
+        return createMesh(positionsActual, uvsActual, normalsActual)
     }
 
-    fun createMesh(file: String): Mesh {
+    suspend fun createMesh(file: String): Mesh {
         return OBJLoader.loadMesh(file)
     }
 
     private fun genVertexArrayObjects(): Int {
-        println(Thread.currentThread().name)
         val vao = GL30.glGenVertexArrays()
         vertexArrayObjects.add(vao)
         GL30.glBindVertexArray(vao)
@@ -130,6 +118,27 @@ object MeshLoader {
         }
 
         Texture.cleanUp()
+    }
+
+    private fun vectorArrayToFloatArray(data: Array<Vector3f>): FloatArray {
+        return FloatArray(data.size * 3) {
+            when {
+                it % 3 == 0 -> data[it / 3].x
+                it % 3 == 1 -> data[it / 3].y
+                it % 3 == 2 -> data[it / 3].z
+                else -> 0f
+            }
+        }
+    }
+
+    private fun vectorArrayToFloatArray(data: Array<Vector2f>): FloatArray {
+        return FloatArray(data.size * 2) {
+            when {
+                it % 2 == 0 -> data[it / 2].x
+                it % 2 == 1 -> data[it / 2].y
+                else -> 0f
+            }
+        }
     }
 
     private val vertexArrayObjects: MutableList<Int> = mutableListOf()
