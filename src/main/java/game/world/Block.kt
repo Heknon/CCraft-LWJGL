@@ -5,6 +5,8 @@ import org.joml.Vector3f
 
 data class Block(val type: Short, val x: Int, val y: Int, val z: Int) {
 
+
+
     companion object {
         data class Face(
                 val vertices: Array<Vector3f>,
@@ -184,5 +186,27 @@ data class Block(val type: Short, val x: Int, val y: Int, val z: Int) {
                         )
                 )
         )
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Block
+
+        if (type != other.type) return false
+        if (x != other.x) return false
+        if (y != other.y) return false
+        if (z != other.z) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = type.toInt()
+        result = 31 * result + x
+        result = 31 * result + y
+        result = 31 * result + z
+        return result
     }
 }

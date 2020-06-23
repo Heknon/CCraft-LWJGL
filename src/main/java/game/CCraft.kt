@@ -15,7 +15,6 @@ import org.joml.Random
 import org.joml.Vector3f
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11
-import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -54,10 +53,10 @@ class CCraft : IGameLogic {
             val usedLocations: MutableSet<Location> = ConcurrentHashMap.newKeySet()
 
             while (!window.shouldClose()) {
-                val xMin = ((camera.position.x - WORLD_SIZE) / 16).toInt()
-                val zMin = ((camera.position.z - WORLD_SIZE) / 16).toInt()
-                val xMax = ((camera.position.x + WORLD_SIZE) / 16).toInt()
-                val zMax = ((camera.position.z + WORLD_SIZE) / 16).toInt()
+                val xMin = ((camera.position.x - PRE_RENDER_DISTANCE) / 16).toInt()
+                val zMin = ((camera.position.z - PRE_RENDER_DISTANCE) / 16).toInt()
+                val xMax = ((camera.position.x + PRE_RENDER_DISTANCE) / 16).toInt()
+                val zMax = ((camera.position.z + PRE_RENDER_DISTANCE) / 16).toInt()
 
                 for (x in xMin until xMax) {
                     for (z in zMin until zMax) {
@@ -72,7 +71,7 @@ class CCraft : IGameLogic {
                                     val noise = generator.eval(nx, nz)
                                     val baseHeight = floor(noise * 16.0).toInt()
 
-                                    for (y in 0 until 25) {
+                                    for (y in 0 until 64) {
                                         val height = baseHeight - y
 
                                         blocks.add(Block(0, offsetX, height, offsetZ))
@@ -185,8 +184,8 @@ class CCraft : IGameLogic {
 
     companion object {
         private const val MOUSE_SENSITIVITY = 0.2f
-        private const val CAMERA_POS_STEP = 1f
-        private const val WORLD_SIZE = 5 * 16
-        val executorService: ExecutorService = Executors.newFixedThreadPool(10)
+        private const val CAMERA_POS_STEP = 2f
+        private const val PRE_RENDER_DISTANCE = 5 * 16
+        val executorService: ExecutorService = Executors.newFixedThreadPool(3)
     }
 }

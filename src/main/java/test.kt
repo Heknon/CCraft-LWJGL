@@ -7,10 +7,26 @@ import javax.imageio.ImageIO
 
 
 fun main() {
-    generateRandomPicture("a")
-    generateRandomPicture("b")
-    generateRandomPicture("c")
-    generateRandomPicture("d")
+    val set = mutableSetOf<Long>()
+
+    for (x in 0 until 16)
+        for (y in 0 until 256)
+            for (z in 0 until 16) {
+                val calc = pack(x, y, z)
+                if (set.contains(calc)) error("failed")
+                set.add(calc)
+            }
+}
+
+fun pack(a: Int, b: Int, c: Int): Long {
+    return a.toLong() shl 32 or (b.toLong() shl 16) or c.toLong()
+}
+
+fun unpack(packed: Long): LongArray {
+    val a: Long = packed shr 32 and 0xFFFFL
+    val b: Long = packed shr 16 and 0xFFFFL
+    val c: Long = packed and 0xFFFFL
+    return longArrayOf(a, b, c)
 }
 
 fun generateRandomPicture(name: String) {
