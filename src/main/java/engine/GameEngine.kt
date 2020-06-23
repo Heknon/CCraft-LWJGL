@@ -51,7 +51,7 @@ class GameEngine(
     private fun init() {
         window.init()
         timer.init()
-        gameLogic.init()
+        gameLogic.init(window)
         mouseInput.init(window)
     }
 

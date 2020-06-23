@@ -11,15 +11,16 @@ import engine.render.lighting.PointLight
 import engine.render.lighting.Sun
 import engine.render.model.Camera
 import game.world.*
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.async
 import org.joml.Random
 import org.joml.Vector3f
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11
+import java.util.*
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadLocalRandom
+import kotlin.collections.ArrayList
 import kotlin.math.floor
 
 
@@ -42,41 +43,49 @@ class CCraft : IGameLogic {
             PointLight.Attenuation(0.6f, 0.075f, 0.3f)
     )
 
-    override fun init() {
+    override fun init(window: Window) {
         renderer.init()
 
         val rand = ThreadLocalRandom.current()
         val generator = OpenSimplexNoise(rand.nextLong(Random.newSeed(), Long.MAX_VALUE))
         val featureSize = 40.0
+
         executorService.submit {
-        //GlobalScope.async {
+            val usedLocations: MutableSet<Location> = ConcurrentHashMap.newKeySet()
 
-            for (x in 0 until 5) {
-                for (z in 0 until 5) {
-                    val blocks: MutableList<Block> = ArrayList(16 * 16 * 128)
-                    val origin = Location(x * 16f, 0f, z * 16f)
+            while (!window.shouldClose()) {
+                val xMin = ((camera.position.x - WORLD_SIZE) / 16).toInt()
+                val zMin = ((camera.position.z - WORLD_SIZE) / 16).toInt()
+                val xMax = ((camera.position.x + WORLD_SIZE) / 16).toInt()
+                val zMax = ((camera.position.z + WORLD_SIZE) / 16).toInt()
 
+                for (x in xMin until xMax) {
+                    for (z in zMin until zMax) {
+                        val blocks: MutableList<Block> = ArrayList(16 * 16 * 128)
+                        val origin = Location(x * 16f, 0f, z * 16f)
 
-                    for (offsetX in 0 until 16) {
-                        val nx: Double = (offsetX + x * 16) / featureSize - 0.5
-                        for (offsetZ in 0 until 16) {
-                            val nz: Double = (offsetZ + z * 16) / featureSize - 0.5
-                            val noise = generator.eval(nx, nz)
-                            val baseHeight = floor(noise * 16.0).toInt()
+                        if (!usedLocations.contains(origin)) {
+                            for (offsetX in 0 until 16) {
+                                val nx: Double = (offsetX + x * 16) / featureSize - 0.5
+                                for (offsetZ in 0 until 16) {
+                                    val nz: Double = (offsetZ + z * 16) / featureSize - 0.5
+                                    val noise = generator.eval(nx, nz)
+                                    val baseHeight = floor(noise * 16.0).toInt()
 
-                            for (y in 0 until 128) {
-                                val height = baseHeight - y
+                                    for (y in 0 until 25) {
+                                        val height = baseHeight - y
 
-                                blocks.add(Block(0, offsetX, height, offsetZ))
+                                        blocks.add(Block(0, offsetX, height, offsetZ))
+                                    }
+                                }
                             }
+                            val chunk = Chunk(origin, blocks.toTypedArray())
+                            objects.add(chunk)
+                            println("STARTED CHUNK CONSTRUCTION")
+                            blocks.clear()
+                            usedLocations.add(origin)
                         }
                     }
-
-
-                    val chunk = Chunk(origin, blocks.toTypedArray())
-                    objects.add(chunk)
-                    println("STARTED CHUNK CONSTRUCTION")
-                    blocks.clear()
                 }
             }
         }
@@ -177,6 +186,7 @@ class CCraft : IGameLogic {
     companion object {
         private const val MOUSE_SENSITIVITY = 0.2f
         private const val CAMERA_POS_STEP = 1f
+        private const val WORLD_SIZE = 5 * 16
         val executorService: ExecutorService = Executors.newFixedThreadPool(10)
     }
 }

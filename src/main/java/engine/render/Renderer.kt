@@ -41,7 +41,6 @@ class Renderer {
         glClear(GL_COLOR_BUFFER_BIT or GL_DEPTH_BUFFER_BIT)
     }
 
-    @ExperimentalCoroutinesApi
     fun render(
             objects: List<WorldObject3D>,
             shader: Shader,
@@ -53,8 +52,6 @@ class Renderer {
         shader.start()
 
         val viewMatrix = spaceTransformer3D.getViewMatrix(camera)
-
-        //println("doing render")
 
         if (shader is PhongShader) {
             val currPointLight = PointLight(pointLight)
@@ -82,7 +79,7 @@ class Renderer {
         var currentlyBoundTexture = -1
         var currentMesh: UUID? = null
 
-        for (obj in objects) {
+        for (obj in listOf(*objects.toTypedArray())) {
             val mesh = obj.mesh?.mesh ?: continue
             if (currentlyBoundVAO != mesh.vertexArrayObjectID) {
                 GL30.glBindVertexArray(0)
