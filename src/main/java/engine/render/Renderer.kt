@@ -11,8 +11,6 @@ import engine.render.shader.types.DirectionalLightShader
 import engine.render.shader.types.ModelViewMatrixShader
 import engine.render.shader.types.PhongShader
 import engine.render.shader.types.ProjectionMatrixShader
-import game.world.ChunkMesh
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import org.joml.Vector3f
 import org.joml.Vector4f
 import org.lwjgl.opengl.GL11.*

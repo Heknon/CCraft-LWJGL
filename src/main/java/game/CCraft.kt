@@ -11,15 +11,19 @@ import engine.render.lighting.PointLight
 import engine.render.lighting.Sun
 import engine.render.model.Camera
 import game.world.*
+import game.world.chunk.Chunk
+import game.world.chunk.ChunkMesh
+import game.world.generator.OpenSimplexNoise
 import org.joml.Random
 import org.joml.Vector3f
 import org.lwjgl.glfw.GLFW.*
 import org.lwjgl.opengl.GL11
+import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import java.util.concurrent.ThreadLocalRandom
-import kotlin.collections.ArrayList
+import kotlin.collections.HashMap
 import kotlin.math.floor
 
 
@@ -27,6 +31,7 @@ class CCraft : IGameLogic {
     var lightIntensity = 20.0f
     val ambientLight = Vector3f(0.3f, 0.3f, 0.3f);
     var lightColor = Vector3f(1f, 1f, 1f)
+    val chunksToRender: Queue<Chunk> = PriorityQueue()
     var lightPosition = Vector3f(0f, 0f, 1f)
     val lightMaterial = LightMaterial()
 
@@ -50,7 +55,7 @@ class CCraft : IGameLogic {
         val featureSize = 40.0
 
         executorService.submit {
-            val usedLocations: MutableSet<Location> = ConcurrentHashMap.newKeySet()
+            val usedLocations: MutableSet<Location<Int>> = ConcurrentHashMap.newKeySet()
 
             while (!window.shouldClose()) {
                 val xMin = ((camera.position.x - PRE_RENDER_DISTANCE) / 16).toInt()
@@ -60,8 +65,8 @@ class CCraft : IGameLogic {
 
                 for (x in xMin until xMax) {
                     for (z in zMin until zMax) {
-                        val blocks: MutableList<Block> = ArrayList(16 * 16 * 128)
-                        val origin = Location(x * 16f, 0f, z * 16f)
+                        val blocks: MutableMap<Long, Block> = HashMap()
+                        val origin = Location(x * 16, 0, z * 16)
 
                         if (!usedLocations.contains(origin)) {
                             for (offsetX in 0 until 16) {
@@ -71,17 +76,16 @@ class CCraft : IGameLogic {
                                     val noise = generator.eval(nx, nz)
                                     val baseHeight = floor(noise * 16.0).toInt()
 
-                                    for (y in 0 until 64) {
-                                        val height = baseHeight - y
+                                    for (y in 0 until baseHeight + 15) {
 
-                                        blocks.add(Block(0, offsetX, height, offsetZ))
+                                        val block = Block(0, offsetX, y, offsetZ)
+                                        blocks[Chunk.packInternalChunkLocation(offsetX.toLong(), y.toLong(), offsetZ.toLong())] = block
                                     }
                                 }
                             }
-                            val chunk = Chunk(origin, blocks.toTypedArray())
+                            val chunk = Chunk(origin, blocks)
                             objects.add(chunk)
                             println("STARTED CHUNK CONSTRUCTION")
-                            blocks.clear()
                             usedLocations.add(origin)
                         }
                     }
@@ -96,19 +100,6 @@ class CCraft : IGameLogic {
     override fun render(window: Window) {
         renderer.clear()
 
-        if (ChunkMesh.services.isNotEmpty()) {
-            for (service in ChunkMesh.services.entries) {
-                if (service.key.isDone) {
-                    service.value.mesh = MeshLoader.createMesh(
-                            service.value.positions,
-                            service.value.uvs,
-                            service.value.normals
-                    ).addTexture("textures/cube.png")
-                    ChunkMesh.services.remove(service.key)
-                }
-            }
-        }
-
         if (window.resized) {
             window.setClearColor(135, 206, 235, 255)
             window.setClearColor(0, 0, 0, 0)
@@ -121,6 +112,14 @@ class CCraft : IGameLogic {
     }
 
     override fun update(interval: Float, mouseInput: MouseInput) {
+        ChunkMesh.bakedChunks.forEach {
+            val mesh = it.mesh
+            if (mesh is ChunkMesh) {
+                mesh.handleEndOfServiceLife()
+                ChunkMesh.bakedChunks.remove(it)
+            }
+        }
+
         camera.movePosition(cameraInc.x * CAMERA_POS_STEP, cameraInc.y * CAMERA_POS_STEP, cameraInc.z * CAMERA_POS_STEP)
 
         val rotVec = mouseInput.displVec
@@ -185,7 +184,7 @@ class CCraft : IGameLogic {
     companion object {
         private const val MOUSE_SENSITIVITY = 0.2f
         private const val CAMERA_POS_STEP = 2f
-        private const val PRE_RENDER_DISTANCE = 5 * 16
+        private const val PRE_RENDER_DISTANCE = 4 * 16
         val executorService: ExecutorService = Executors.newFixedThreadPool(3)
     }
 }

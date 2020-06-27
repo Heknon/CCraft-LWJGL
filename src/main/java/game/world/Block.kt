@@ -5,6 +5,7 @@ import org.joml.Vector3f
 
 data class Block(val type: Short, val x: Int, val y: Int, val z: Int) {
 
+    var isActive = true
 
 
     companion object {

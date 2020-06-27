@@ -21,11 +21,11 @@ class SpaceTransformer3D {
 
         modelViewMatrix
                 .identity()
-                .translate(obj.position)
+                .translate(obj.position.x.toFloat(), obj.position.y.toFloat(), obj.position.z.toFloat())
                 .rotateXYZ(
-                        Math.toRadians(-rot.x.toDouble()).toFloat(),
-                        Math.toRadians(-rot.y.toDouble()).toFloat(),
-                        Math.toRadians(-rot.z.toDouble()).toFloat()
+                        Math.toRadians(-rot.x).toFloat(),
+                        Math.toRadians(-rot.y).toFloat(),
+                        Math.toRadians(-rot.z).toFloat()
                 ).scale(obj.scale)
 
         val viewCurr = Matrix4f(viewMatrix)
@@ -38,10 +38,10 @@ class SpaceTransformer3D {
 
         viewMatrix.identity()
         viewMatrix
-                .rotate(Math.toRadians(rot.x.toDouble()).toFloat(), Vector3f(1f, 0f, 0f))
-                .rotate(Math.toRadians(rot.y.toDouble()).toFloat(), Vector3f(0f, 1f, 0f))
+                .rotate(Math.toRadians(rot.x).toFloat(), Vector3f(1f, 0f, 0f))
+                .rotate(Math.toRadians(rot.y).toFloat(), Vector3f(0f, 1f, 0f))
 
-        viewMatrix.translate(-pos.x, -pos.y, -pos.z)
+        viewMatrix.translate(-pos.x.toFloat(), -pos.y.toFloat(), -pos.z.toFloat())
         return viewMatrix
     }
 

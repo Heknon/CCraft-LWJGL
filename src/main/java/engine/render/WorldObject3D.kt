@@ -1,20 +1,21 @@
 package engine.render
 
+import org.joml.Vector3d
 import org.joml.Vector3f
 
 open class WorldObject3D(
         var mesh: MeshHolder?,
-        val position: Vector3f = Vector3f(0f, 0f, 0f),
-        val rotation: Vector3f = Vector3f(0f, 0f, 0f),
+        val position: Vector3d,
+        val rotation: Vector3d = Vector3d(0.0, 0.0, 0.0),
         val scale: Float = 1f
 ) {
-    fun setPosition(x: Float, y: Float, z: Float) {
+    fun setPosition(x: Double, y: Double, z: Double) {
         position.x = x
         position.y = y
         position.z = z
     }
 
-    fun setRotation(x: Float, y: Float, z: Float) {
+    fun setRotation(x: Double, y: Double, z: Double) {
         rotation.x = x
         rotation.y = y
         rotation.z = z

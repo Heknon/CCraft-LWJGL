@@ -1,4 +1,4 @@
-import game.world.OpenSimplexNoise
+import game.world.generator.OpenSimplexNoise
 import org.joml.Random
 import java.awt.image.BufferedImage
 import java.io.File
@@ -7,15 +7,7 @@ import javax.imageio.ImageIO
 
 
 fun main() {
-    val set = mutableSetOf<Long>()
-
-    for (x in 0 until 16)
-        for (y in 0 until 256)
-            for (z in 0 until 16) {
-                val calc = pack(x, y, z)
-                if (set.contains(calc)) error("failed")
-                set.add(calc)
-            }
+    println(Int.MAX_VALUE as Long)
 }
 
 fun pack(a: Int, b: Int, c: Int): Long {

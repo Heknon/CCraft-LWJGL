@@ -1,31 +1,40 @@
-package game.world
+package game.world.chunk
 
 import engine.Vertex
 import engine.render.Mesh
 import engine.render.MeshHolder
-import game.CCraft
+import engine.render.MeshLoader
+import game.world.Block
 import org.joml.Vector3f
 import java.util.concurrent.ConcurrentHashMap
-import java.util.concurrent.ConcurrentMap
-import java.util.concurrent.Future
 
 class ChunkMesh(private val chunk: Chunk) : MeshHolder {
     private val vertices: MutableList<Vertex> = mutableListOf()
-    lateinit var positions: FloatArray
-    lateinit var uvs: FloatArray
-    lateinit var normals: FloatArray
+    var positions: FloatArray? = null
+    var uvs: FloatArray? = null
+    var normals: FloatArray? = null
     override var mesh: Mesh? = null
 
-    init {
-        services[CCraft.executorService.submit {
-            buildMesh()
-            println("FINISHED BUILDING MESH")
-            populateLists()
-        }] = this
+    fun load() {
+        chunk.isLoaded = true
+    }
+
+    fun rebuild() {
+        buildMesh()
+        populateLists()
+        mesh = MeshLoader.createMesh(
+                positions!!,
+                uvs!!,
+                normals!!
+        ).addTexture("textures/cube.png")
+        positions = null
+        uvs = null
+        normals = null
     }
 
     private fun buildMesh() {
         for (block in chunk.blocks.values) {
+            if (!block.isActive) continue
             val positiveX = chunk.getBlockAt(block.x + 1, block.y, block.z) != null
             val negativeX = chunk.getBlockAt(block.x - 1, block.y, block.z) != null
             val positiveY = chunk.getBlockAt(block.x, block.y + 1, block.z) != null
@@ -102,8 +111,19 @@ class ChunkMesh(private val chunk: Chunk) : MeshHolder {
         vertices.clear()
     }
 
+    fun handleEndOfServiceLife() {
+        mesh = MeshLoader.createMesh(
+                positions!!,
+                uvs!!,
+                normals!!
+        ).addTexture("textures/cube.png")
+        positions = null
+        uvs = null
+        normals = null
+    }
+
     companion object {
-        val services: ConcurrentMap<Future<*>, ChunkMesh> = ConcurrentHashMap()
+        val bakedChunks: MutableSet<Chunk> = ConcurrentHashMap.newKeySet()
     }
 
 }

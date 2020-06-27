@@ -2,11 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d91a2e-7ec9-4ae2-87ac-95e8c1ab3dd3" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/World.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/WorldImpl.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/Chunk.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkCoordinator.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/Renderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/Renderer.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/SpaceTransformer3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/SpaceTransformer3D.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/WorldObject3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/WorldObject3D.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/model/Camera.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/model/Camera.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/CCraft.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/CCraft.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/world/Block.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/Block.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/Chunk.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/Chunk.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/ChunkMesh.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/ChunkMesh.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/Chunk.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/ChunkMesh.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkMesh.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/Location.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/Location.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/OpenSimplexNoise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/generator/OpenSimplexNoise.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/generator/Noise.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -21,12 +34,12 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="GLSL Shader" />
-        <option value="Kotlin Interface" />
         <option value="Kotlin Object" />
         <option value="FxmlFile" />
-        <option value="Kotlin Class" />
-        <option value="Kotlin File" />
         <option value="Class" />
+        <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -43,13 +56,16 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/resources/models" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
-    <property name="settings.editor.selected.configurable" value="project.propCompiler" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
@@ -61,11 +77,11 @@
       <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\models" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="game.world.chunk" />
       <recent name="engine.render" />
       <recent name="engine.shader.shaders" />
       <recent name="game" />
       <recent name="engine" />
-      <recent name="window" />
     </key>
     <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
       <recent name="engine.shader.types" />
@@ -80,11 +96,16 @@
       <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\shaders" />
     </key>
   </component>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="private fun updateRebuildList() {              }" />
+    </option>
+  </component>
   <component name="RunManager" selected="Application.Main">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="CCraft" />
-      <option name="VM_PARAMETERS" value="-Xmx8096m" />
+      <option name="VM_PARAMETERS" value="-XX:+UnlockCommercialFeatures" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -123,18 +144,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1591811702520</updated>
+      <workItem from="1593237380310" duration="889000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="2" />
   </component>
   <component name="WindowStateProjectService">
     <state x="690" y="255" key="#Project_Structure" timestamp="1591814758748">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="690" y="255" key="#Project_Structure/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591814758748" />
-    <state x="552" y="252" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1592661904768">
+    <state x="552" y="252" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1593237443248">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="552" y="252" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592661904767" />
+    <state x="552" y="252" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593237443248" />
     <state x="854" y="400" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1591990376824">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
@@ -143,10 +168,10 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="877" y="302" key="#com.intellij.ide.macro.MacrosDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592641350875" />
-    <state x="889" y="313" key="#com.intellij.ide.util.MemberChooser" timestamp="1592067347821">
+    <state x="889" y="313" key="#com.intellij.ide.util.MemberChooser" timestamp="1593244326447">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="889" y="313" key="#com.intellij.ide.util.MemberChooser/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592067347821" />
+    <state x="889" y="313" key="#com.intellij.ide.util.MemberChooser/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593244326447" />
     <state x="827" y="381" key="#com.intellij.ide.util.TreeClassChooserDialog" timestamp="1591862192562">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
@@ -163,34 +188,34 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="828" y="344" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591957605888" />
-    <state x="877" y="249" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1591945960672">
+    <state x="877" y="249" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog" timestamp="1593238822568">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="877" y="249" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1591945960672" />
+    <state x="877" y="249" key="#org.jetbrains.kotlin.idea.refactoring.move.moveDeclarations.ui.MoveKotlinTopLevelDeclarationsDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593238822568" />
     <state x="877" y="352" key="FileChooserDialogImpl" timestamp="1592664172180">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="877" y="352" key="FileChooserDialogImpl/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592664172180" />
-    <state width="2151" height="333" key="GridCell.Tab.0.bottom" timestamp="1592940696705">
+    <state width="2151" height="320" key="GridCell.Tab.0.bottom" timestamp="1593245619065">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@-3840.0.2194.1194" timestamp="1592240606488" />
-    <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592940696705" />
-    <state width="2151" height="333" key="GridCell.Tab.0.center" timestamp="1592940696705">
+    <state width="2151" height="320" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593245619065" />
+    <state width="2151" height="320" key="GridCell.Tab.0.center" timestamp="1593245619065">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@-3840.0.2194.1194" timestamp="1592240606488" />
-    <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592940696705" />
-    <state width="2151" height="333" key="GridCell.Tab.0.left" timestamp="1592940696705">
+    <state width="2151" height="320" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593245619065" />
+    <state width="2151" height="320" key="GridCell.Tab.0.left" timestamp="1593245619065">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@-3840.0.2194.1194" timestamp="1592240606488" />
-    <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592940696705" />
-    <state width="2151" height="333" key="GridCell.Tab.0.right" timestamp="1592940696705">
+    <state width="2151" height="320" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593245619065" />
+    <state width="2151" height="320" key="GridCell.Tab.0.right" timestamp="1593245619065">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@-3840.0.2194.1194" timestamp="1592240606488" />
-    <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592940696705" />
+    <state width="2151" height="320" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593245619065" />
     <state width="2151" height="382" key="GridCell.Tab.1.bottom" timestamp="1592940077589">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
@@ -211,18 +236,18 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="628" y="252" key="Maven.ArtifactSearchDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592461315610" />
-    <state x="606" y="239" key="SettingsEditor" timestamp="1592662708151">
+    <state x="606" y="239" key="SettingsEditor" timestamp="1593237356957">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="606" y="239" key="SettingsEditor/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592662708151" />
-    <state x="-3694" y="34" width="2008" height="958" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1592156648345">
+    <state x="606" y="239" key="SettingsEditor/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593237356957" />
+    <state x="-3694" y="34" width="2008" height="958" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1593083796956">
       <screen x="-3840" y="0" width="2194" height="1194" />
     </state>
-    <state x="-3694" y="34" width="2008" height="958" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592156648345" />
-    <state x="906" y="514" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1592939804059">
+    <state x="-3694" y="34" width="2008" height="958" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593083796956" />
+    <state x="906" y="514" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1593241798336">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="906" y="514" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592939804059" />
+    <state x="906" y="514" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593241798336" />
     <state x="-3349" y="-28" width="1588" height="820" maximized="true" key="dock-window-1" timestamp="1592033312997">
       <screen x="-3840" y="0" width="2194" height="1194" />
     </state>
@@ -239,13 +264,16 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="821" y="239" key="refactoring.ChangeSignatureDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592138882639" />
-    <state x="754" y="279" key="run.anything.popup" timestamp="1592939144944">
+    <state x="754" y="279" width="672" height="677" key="run.anything.popup" timestamp="1593246794257">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="754" y="279" key="run.anything.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592939144944" />
-    <state x="760" y="264" width="672" height="678" key="search.everywhere.popup" timestamp="1592940075980">
+    <state x="754" y="279" width="672" height="677" key="run.anything.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593246794257" />
+    <state x="760" y="264" width="672" height="678" key="search.everywhere.popup" timestamp="1593246783120">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="760" y="264" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592940075980" />
+    <state x="760" y="264" width="672" height="678" key="search.everywhere.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593246783120" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/CCraft$Main.ic" NAME="Main Coverage Results" MODIFIED="1593245609895" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>
