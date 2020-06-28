@@ -16,20 +16,16 @@ class ChunkMesh(private val chunk: Chunk) : MeshHolder {
     override var mesh: Mesh? = null
 
     fun load() {
+        rebuild()
         chunk.isLoaded = true
     }
 
     fun rebuild() {
+        chunk.isRebuilt = false
         buildMesh()
         populateLists()
-        mesh = MeshLoader.createMesh(
-                positions!!,
-                uvs!!,
-                normals!!
-        ).addTexture("textures/cube.png")
-        positions = null
-        uvs = null
-        normals = null
+        chunk.isRebuilt = true
+        bakedChunks.add(chunk)
     }
 
     private fun buildMesh() {
@@ -111,7 +107,7 @@ class ChunkMesh(private val chunk: Chunk) : MeshHolder {
         vertices.clear()
     }
 
-    fun handleEndOfServiceLife() {
+    fun assignNewMesh() {
         mesh = MeshLoader.createMesh(
                 positions!!,
                 uvs!!,
@@ -124,6 +120,7 @@ class ChunkMesh(private val chunk: Chunk) : MeshHolder {
 
     companion object {
         val bakedChunks: MutableSet<Chunk> = ConcurrentHashMap.newKeySet()
+
     }
 
 }

@@ -2,25 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="24d91a2e-7ec9-4ae2-87ac-95e8c1ab3dd3" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/World.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/WorldImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/Chunk.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkCoordinator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/Renderer.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/Renderer.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/SpaceTransformer3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/SpaceTransformer3D.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/WorldObject3D.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/WorldObject3D.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/engine/render/model/Camera.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/engine/render/model/Camera.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/game/CCraft.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/CCraft.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/Block.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/Block.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/Chunk.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/ChunkMesh.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkMesh.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/Location.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/Location.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/OpenSimplexNoise.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/generator/OpenSimplexNoise.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/generator/Noise.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/World.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/World.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/chunk/Chunk.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/Chunk.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkCoordinator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkCoordinator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkMesh.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/game/world/chunk/ChunkMesh.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/shaders/TexturedFS.glsl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/shaders/TexturedFS.glsl" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,13 +59,6 @@
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\models\craft" />
-      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft" />
-      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\textures" />
-      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\shaders" />
-      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\models" />
-    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="game.world.chunk" />
       <recent name="engine.render" />
@@ -83,17 +66,24 @@
       <recent name="game" />
       <recent name="engine" />
     </key>
-    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
-      <recent name="engine.shader.types" />
-      <recent name="render.shader.types" />
-      <recent name="render.shader" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\models" />
       <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources" />
       <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\models\house" />
       <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\textures" />
       <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\shaders" />
+    </key>
+    <key name="CopyKotlinDeclarationDialog.RECENTS_KEY">
+      <recent name="engine.shader.types" />
+      <recent name="render.shader.types" />
+      <recent name="render.shader" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\models\craft" />
+      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft" />
+      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\textures" />
+      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\shaders" />
+      <recent name="C:\Users\Ori\Desktop\Development\FinalProject\CCraft\src\main\resources\models" />
     </key>
   </component>
   <component name="RunAnythingCache">
@@ -196,26 +186,26 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="877" y="352" key="FileChooserDialogImpl/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592664172180" />
-    <state width="2151" height="320" key="GridCell.Tab.0.bottom" timestamp="1593245619065">
+    <state width="2151" height="320" key="GridCell.Tab.0.bottom" timestamp="1593336440592">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state width="2151" height="333" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@-3840.0.2194.1194" timestamp="1592240606488" />
-    <state width="2151" height="320" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593245619065" />
-    <state width="2151" height="320" key="GridCell.Tab.0.center" timestamp="1593245619065">
+    <state width="2151" height="320" key="GridCell.Tab.0.bottom/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593336440592" />
+    <state width="2151" height="320" key="GridCell.Tab.0.center" timestamp="1593336440592">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state width="2151" height="333" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@-3840.0.2194.1194" timestamp="1592240606488" />
-    <state width="2151" height="320" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593245619065" />
-    <state width="2151" height="320" key="GridCell.Tab.0.left" timestamp="1593245619065">
+    <state width="2151" height="320" key="GridCell.Tab.0.center/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593336440592" />
+    <state width="2151" height="320" key="GridCell.Tab.0.left" timestamp="1593336440592">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state width="2151" height="333" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@-3840.0.2194.1194" timestamp="1592240606488" />
-    <state width="2151" height="320" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593245619065" />
-    <state width="2151" height="320" key="GridCell.Tab.0.right" timestamp="1593245619065">
+    <state width="2151" height="320" key="GridCell.Tab.0.left/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593336440592" />
+    <state width="2151" height="320" key="GridCell.Tab.0.right" timestamp="1593336440592">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state width="2151" height="333" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@-3840.0.2194.1194" timestamp="1592240606488" />
-    <state width="2151" height="320" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593245619065" />
+    <state width="2151" height="320" key="GridCell.Tab.0.right/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593336440592" />
     <state width="2151" height="382" key="GridCell.Tab.1.bottom" timestamp="1592940077589">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
@@ -252,10 +242,10 @@
       <screen x="-3840" y="0" width="2194" height="1194" />
     </state>
     <state x="-3349" y="-28" width="1588" height="820" maximized="true" key="dock-window-1/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592033312997" />
-    <state x="809" y="330" width="576" height="534" key="find.popup" timestamp="1592817982538">
+    <state x="809" y="330" width="576" height="534" key="find.popup" timestamp="1593332263058">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="809" y="330" width="576" height="534" key="find.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592817982538" />
+    <state x="809" y="330" width="576" height="534" key="find.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593332263058" />
     <state x="524" y="292" key="new project wizard" timestamp="1592664183763">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
@@ -264,10 +254,10 @@
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
     <state x="821" y="239" key="refactoring.ChangeSignatureDialog/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1592138882639" />
-    <state x="754" y="279" width="672" height="677" key="run.anything.popup" timestamp="1593246794257">
+    <state x="754" y="279" width="672" height="677" key="run.anything.popup" timestamp="1593333171914">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>
-    <state x="754" y="279" width="672" height="677" key="run.anything.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593246794257" />
+    <state x="754" y="279" width="672" height="677" key="run.anything.popup/0.0.2194.1194/-3840.0.2194.1194@0.0.2194.1194" timestamp="1593333171914" />
     <state x="760" y="264" width="672" height="678" key="search.everywhere.popup" timestamp="1593246783120">
       <screen x="0" y="0" width="2194" height="1194" />
     </state>

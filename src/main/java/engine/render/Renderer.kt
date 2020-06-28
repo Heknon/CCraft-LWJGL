@@ -11,17 +11,18 @@ import engine.render.shader.types.DirectionalLightShader
 import engine.render.shader.types.ModelViewMatrixShader
 import engine.render.shader.types.PhongShader
 import engine.render.shader.types.ProjectionMatrixShader
-import org.joml.Vector3f
-import org.joml.Vector4f
+import org.joml.*
 import org.lwjgl.opengl.GL11.*
 import org.lwjgl.opengl.GL30
+import java.lang.Math
 import java.util.*
 
 
 class Renderer {
     private lateinit var shaderMap: Map<String, Shader>
-    private lateinit var spaceTransformer3D: SpaceTransformer3D
     private var specularPower: Float = 10f
+    lateinit var spaceTransformer3D: SpaceTransformer3D
+    var projectionMatrix: Matrix4f? = null
 
     fun init() {
         shaderMap = mapOf(Pair("textured", TexturedShader()), Pair("blend", ColorBlendShader()))
@@ -137,11 +138,11 @@ class Renderer {
 
     fun updateProjectionMatrix(window: Window) {
         // TODO: Maybe this needs to be loaded every render!
-        val projectionMatrix = spaceTransformer3D.getProjectionMatrix(FOV, window.size, Z_NEAR, Z_FAR)
+        projectionMatrix = spaceTransformer3D.getProjectionMatrix(FOV, window.size, Z_NEAR, Z_FAR)
         shaderMap.values.forEach {
             if (it is ProjectionMatrixShader) {
                 it.start()
-                it.loadProjectionMatrix(projectionMatrix)
+                it.loadProjectionMatrix(projectionMatrix!!)
                 it.stop()
             }
         }

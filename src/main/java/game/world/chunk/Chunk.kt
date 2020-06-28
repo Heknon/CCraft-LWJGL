@@ -7,15 +7,11 @@ import org.joml.Vector3d
 
 class Chunk(origin: Location<Int>, val blocks: Map<Long, Block>) : WorldObject3D(null, Vector3d(origin.x.toDouble(), origin.y.toDouble(), origin.z.toDouble())) {
     var isLoaded: Boolean = false
-    var isSetup = false
+    var isRebuilt: Boolean = false
 
     fun load() {
         if (mesh == null) mesh = ChunkMesh(this)
         (mesh as ChunkMesh).load() // isLoaded flag changed internally with this call
-    }
-
-    fun setup() {
-        isSetup = true
     }
 
     fun getBlockAt(x: Int, y: Int, z: Int): Block? {
@@ -25,6 +21,31 @@ class Chunk(origin: Location<Int>, val blocks: Map<Long, Block>) : WorldObject3D
     fun rebuild() {
         (mesh as ChunkMesh).rebuild()
     }
+
+    fun assignNewMesh() {
+        (mesh as ChunkMesh).assignNewMesh()
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Chunk
+
+        if (blocks != other.blocks) return false
+        if (isLoaded != other.isLoaded) return false
+        if (isRebuilt != other.isRebuilt) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = blocks.hashCode()
+        result = 31 * result + isLoaded.hashCode()
+        result = 31 * result + isRebuilt.hashCode()
+        return result
+    }
+
 
     companion object {
         fun packInternalChunkLocation(a: Long, b: Long, c: Long): Long {

@@ -7,7 +7,11 @@ import game.world.chunk.ChunkManager
 abstract class World {
     abstract fun createGenerator()
 
-    private val chunkManager: ChunkManager = ChunkManager(ChunkCoordinator(this))
+    val chunkManager: ChunkManager = ChunkManager(ChunkCoordinator(this))
+
+    fun getChunks(): Collection<Chunk> {
+        return chunkManager.chunks.values
+    }
 
     fun <T : Number> getChunk(location: Location<T>): Chunk? {
         return getChunk(location.x, location.y, location.z)

@@ -3,10 +3,18 @@ package game.world.chunk
 import game.world.Location
 
 class ChunkManager(val coordinator: ChunkCoordinator) {
-    private val chunks: MutableMap<Long, Chunk> = mutableMapOf()
+    internal val chunks: MutableMap<Long, Chunk> = mutableMapOf()
+    val chunksToRender = coordinator.chunksToRender
 
-    fun addChunk(chunk: Chunk, location: Location<Int>) {
-        chunks[location.pack()] = chunk
+    fun addChunk(chunk: Chunk) {
+        chunks[Location.pack(chunk.position.x, chunk.position.y, chunk.position.z)] = chunk
+        coordinator.chunksToBuild.add(chunk)
+    }
+
+    fun addChunk(vararg chunks: Chunk) {
+        for (chunk in chunks) {
+            addChunk(chunk)
+        }
     }
 
     fun getChunk(x: Int, y: Int, z: Int): Chunk? {

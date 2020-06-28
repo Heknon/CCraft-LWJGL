@@ -98,6 +98,9 @@ vec4 calcDirectionalLight(DirectionalLight light, vec3 position, vec3 normal) {
 }
 
 void main() {
+    if (shouldDiscard == 1) {
+        discard;
+    }
     setupColors(material, pass_uvs);
 
     vec4 diffuseSpecularComp = calcDirectionalLight(directionalLight, mvPosition, mvNormals);
